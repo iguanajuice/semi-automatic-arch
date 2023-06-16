@@ -3,7 +3,7 @@
 HAVEREAD=0 # Set this to 1 if you have read this script
 
 if [ $HAVEREAD = 0 ]
-	then echo Please read through semi-automatic-arch.sh and configure it where necessary
+	then echo Please read through semi-automatic-arch/install.sh and configure it where necessary
 fi
 
 USER=user        # Name of auto-generated user
