@@ -58,6 +58,7 @@ echo "#!/bin/sh
 	echo '
 	#[chaotic-aur]
 	#Include = /etc/pacman.d/chaotic-mirrorlist' >> /etc/pacman.conf
+ 	pacman --noconfirm -Syu > /dev/null
 	
 	sed -ei 's/#Parallel/Parallel/g' /etc/pacman.conf
 	sed -ei 's/#Color/Color/g' /etc/pacman.conf
