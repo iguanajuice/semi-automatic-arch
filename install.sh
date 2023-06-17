@@ -2,7 +2,7 @@
 
 HAVEREAD=0 # Set this to 1 if you have read this script
 
-if [ $HAVEREAD = 1 ]
+if [ $HAVEREAD = 0 ]
 	then echo Please read through \`semi-automatic-arch/install.sh\` and configure it where necessary
 	exit
 fi
