@@ -38,7 +38,8 @@ echo "#!/bin/sh
 	passwd "$_USER"
 	usermod -s /bin/"$_SHELL" -aG wheel "$_USER"
 
-	echo Uncomment your keyboard locale from the upcoming list...press enter to continue
+	echo '
+ 	Uncomment your keyboard locale from the upcoming list...press enter to continue'
 	read
 	"$_EDITOR" /etc/locale.gen
 	locale-gen | awk 'NR==2 {print substr(\$1,1,length(\$1)-3)}' > /etc/locale.conf
