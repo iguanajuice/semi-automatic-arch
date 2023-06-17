@@ -84,6 +84,6 @@ Ready to edit pacman config, optional repos can be enabled at the bottom by unco
 " > /mnt/install.sh
 
 arch-chroot /mnt sh install.sh
-sleep 0.1
+sleep 0.5
 echo '
 All done, run command reboot to restart your system'
