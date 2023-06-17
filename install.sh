@@ -75,7 +75,8 @@ echo "#!/bin/sh
 
 	echo All done, press enter and run command \`reboot\` to restart your system'
 	read
+ 	rm setup.sh
 	exit
-" > /mnt/tmp/setup.sh
-echo Entering system using chroot, please run command \`sh /tmp/setup.sh\`
+" > /mnt/setup.sh
+echo Entering system using chroot, please run command \`sh setup.sh\`
 arch-chroot /mnt
