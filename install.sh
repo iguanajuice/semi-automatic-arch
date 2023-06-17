@@ -16,7 +16,7 @@ LIBVA=mesa       # Driver for hardware video encoding/decoding: Radeon=mesa, Int
 
 sed -ie 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt base base-devel $KERNEL $KERNEL-headers $UCODE doas $EDITOR `# Core packages` \
-	git wget htop neofetch man-db usbutils \                             `# Miscellaneous CLI tools` \
+	git wget htop neofetch man-db usbutils                               `# Miscellaneous CLI tools` \
 	lvm2 ntfs-3g                                                         `# Support additional filesystem types` \
 	networkmanager net-tools wireless_tools                              `# Networking packages` \
 	wireplumber pipewire-pulse pipewire-jack                             `# Audio packages` \
