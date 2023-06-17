@@ -10,7 +10,7 @@ USER=user        # Name of auto-generated user
 EDITOR=micro     # micro > nano :)
 SHELL=fish       # Set default interactive shell, does NOT change system shell
 KERNEL=linux     # Pick which Linux kernel you want: linux, linux-lts, linux-zen, linux-rt linux-rt-lts
-UCODE=amd-ucode  # Set to either amd-ucode or intel-ucode
+UCODE=           # Set to either amd-ucode or intel-ucode or leave blank if using neither
 LIBVA=mesa       # Driver for hardware video encoding/decoding using your GPU: Radeon=mesa, Intel=intel, Nvidia=vdpau
 
 echo ParrelelDownloads = 5 >> /etc/nano.conf # haha package download go brrrrr
