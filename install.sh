@@ -79,5 +79,5 @@ echo "#!/bin/sh
 	exit
 " > /mnt/setup.sh
 echo '
-Entering system using chroot, please run command \`sh setup.sh\`'
+Entering system using chroot, please run command `sh setup.sh`'
 arch-chroot /mnt
