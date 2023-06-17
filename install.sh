@@ -71,7 +71,7 @@ Edit the GRUB configuration if you like...press enter to continue'
 	sed -ie 's/#IgnoreGroup/IgnoreGroup/g' /etc/pacman.conf
 
 	echo '
-About to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue'
+Ready to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue'
 	read
 	"$_EDITOR" /etc/pacman.conf
  	pacman --noconfirm -Syu > /dev/null
