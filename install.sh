@@ -14,7 +14,7 @@ KERNEL=linux     # Pick which Linux kernel you want: linux, linux-lts, linux-zen
 UCODE=           # Set to either amd-ucode or intel-ucode or leave blank if using neither
 LIBVA=mesa       # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
 
-echo ParrelelDownloads = 5 >> /etc/nano.conf # haha package download go brrrrr
+sed -ei 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt base base-devel $KERNEL $KERNEL-headers $UCODE doas $EDITOR `# Core packages` \
 	git wget htop neofetch man-db usbutils \                             `# Miscellaneous CLI tools` \
 	lvm2 ntfs-3g                                                         `# Support additional filesystem types` \
