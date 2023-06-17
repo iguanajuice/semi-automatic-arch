@@ -15,10 +15,10 @@ UCODE=            # Set to either amd-ucode or intel-ucode or leave blank if usi
 LIBVA=mesa        # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
 
 sed -ie 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
-pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_EDITOR `# Core packages` \
+pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_EDITOR $_SHELL `# Core packages` \
 	grub efibootmgr                                                      `# Bootloader packages` \
-	git wget htop neofetch man-db usbutils arch-install-scripts          `# Miscellaneous CLI tools` \
-	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                    `# Support additional filesystem types` \
+	git wget htop neofetch man-db usbutils arch-install-scripts                            `# Miscellaneous CLI tools` \
+	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                                      `# Support additional filesystem types` \
 	networkmanager net-tools wireless_tools                              `# Networking packages` \
 	wireplumber pipewire-pulse pipewire-jack                             `# Audio packages` \
 	libva-$LIBVA-driver gstreamer-vaapi                                  `# Hardware video codecs`
@@ -80,11 +80,9 @@ Ready to edit pacman config, optional repos can be enabled at the bottom by unco
 	systemctl enable NetworkManager
 
 	echo '
-All done, press enter then Ctrl+D and run command reboot to restart your system'
-	read
+All done, run command reboot to restart your system'
  	rm setup.sh
 	exit
-" > /mnt/setup.sh
-echo '
-Entering system using chroot, please run command sh setup.sh'
-arch-chroot /mnt
+" > /mnt/install.sh
+
+arch-chroot /mnt sh install.sh
