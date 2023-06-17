@@ -15,7 +15,7 @@ UCODE=            # Set to either amd-ucode or intel-ucode or leave blank if usi
 LIBVA=mesa        # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
 
 sed -ie 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
-pacstrap -K /mnt base base-devel $KERNEL $KERNEL-headers $UCODE doas $EDITOR `# Core packages` \
+pacstrap -K /mnt base base-devel $KERNEL $KERNEL-headers $UCODE doas $_EDITOR `# Core packages` \
 	git wget htop neofetch man-db usbutils                               `# Miscellaneous CLI tools` \
 	lvm2 ntfs-3g                                                         `# Support additional filesystem types` \
 	networkmanager net-tools wireless_tools                              `# Networking packages` \
@@ -23,7 +23,7 @@ pacstrap -K /mnt base base-devel $KERNEL $KERNEL-headers $UCODE doas $EDITOR `# 
 	libva-$LIBVA-driver gstreamer-vaapi                                  `# Hardware video codecs`
 
 genfstab -U /mnt > /mnt/etc/fstab
-if [ $SHELL = fish ]
+if [ $_SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
 fi
 echo "#!/bin/sh
@@ -32,22 +32,22 @@ echo "#!/bin/sh
 
 	echo Password for root:
 	passwd
-	chsh -s /bin/"$SHELL"
-	useradd -m "$USER"
-	echo Password for "$USER"
-	passwd "$USER"
-	usermod -s /bin/"$SHELL" -aG wheel "$USER"
+	chsh -s /bin/"$_SHELL"
+	useradd -m "$_USER"
+	echo Password for "$_USER"
+	passwd "$_USER"
+	usermod -s /bin/"$_SHELL" -aG wheel "$_USER"
 
 	echo Uncomment your keyboard locale from the upcoming list...press enter to continue
 	read
-	"$EDITOR" /etc/locale.gen
+	"$_EDITOR" /etc/locale.gen
 	locale-gen | awk 'NR==2 {print substr($1,1,length($1)-3)}' > /etc/locale.conf
 	echo LANG=$(cat /etc/locale.conf) > /etc/locale.conf
 
 	grub-install
 	echo Edit GRUB's configuration if you like...press enter to continue
 	read
-	"$EDITOR" /etc/default/grub
+	"$_EDITOR" /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
 
 	pacman-key --init
@@ -67,7 +67,7 @@ echo "#!/bin/sh
 
 	echo About to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue
 	read
-	"$EDITOR" /etc/pacman.conf
+	"$_EDITOR" /etc/pacman.conf
  	pacman --noconfirm -Syu > /dev/null
 
 	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf
