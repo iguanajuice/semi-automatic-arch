@@ -23,7 +23,7 @@ pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_
 	wireplumber pipewire-pulse pipewire-jack                                               `# Audio packages` \
 	libva-$LIBVA-driver gstreamer-vaapi                                                    `# Hardware video codecs`
 
-genfstab -U /mnt > /mnt/etc/fstab
+genfstab /mnt > /mnt/etc/fstab
 if [ $_SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
 fi
