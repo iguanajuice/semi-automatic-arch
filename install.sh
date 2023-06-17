@@ -80,7 +80,7 @@ Ready to edit pacman config, optional repos can be enabled at the bottom by unco
 	systemctl enable NetworkManager
 
 	echo '
-All done, press enter and run command `reboot` to restart your system'
+All done, press enter then Ctrl+D and run command `reboot` to restart your system'
 	read
  	rm setup.sh
 	exit
