@@ -79,7 +79,8 @@ Ready to edit pacman config, optional repos can be enabled at the bottom by unco
 	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf
 	systemctl enable NetworkManager
 
-	echo All done, press enter and run command \`reboot\` to restart your system
+	echo '
+All done, press enter and run command `reboot` to restart your system'
 	read
  	rm setup.sh
 	exit
