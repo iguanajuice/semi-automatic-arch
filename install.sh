@@ -46,7 +46,8 @@ echo "#!/bin/sh
 	echo LANG=$(cat /etc/locale.conf) > /etc/locale.conf
 
 	grub-install
-	echo Edit GRUB's configuration if you like...press enter to continue
+	echo '
+ 	Edit the GRUB configuration if you like...press enter to continue'
 	read
 	"$_EDITOR" /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
