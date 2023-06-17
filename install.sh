@@ -24,7 +24,7 @@ pacstrap -K /mnt base base-devel $KERNEL $KERNEL-headers $UCODE doas $EDITOR `# 
 
 genfstab -U /mnt > /mnt/etc/fstab
 if [ $SHELL = fish ]
-	then echo -e '\nset fish_greeting'
+	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
 fi
 echo "#!/bin/sh
 	ln -s /usr/bin/doas /usr/local/bin/sudo
