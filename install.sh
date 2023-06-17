@@ -15,11 +15,11 @@ LIBVA=mesa       # Driver for hardware video encoding/decoding using your GPU: R
 
 echo ParrelelDownloads = 5 >> /etc/nano.conf # haha package download go brrrrr
 pacstrap -K /mnt base base-devel $KERNEL $KERNEL-headers $UCODE doas $EDITOR \ # Core packages
-	git wget htop neofetch man-db usbutils                                     # Miscellaneous CLI tools
-	lvm2 ntfs-3g \                                                             # Support additional filesystem types
-	networkmanager net-tools wireless_tools                                    # Networking packages
-	wireplumber pipewire-pulse pipewire-jack                                   # Audio packages
-	libva-$LIBVA-driver gstreamer-vaapi                                        # Hardware video codecs
+	git wget htop neofetch man-db usbutils \                               # Miscellaneous CLI tools
+	lvm2 ntfs-3g \                                                         # Support additional filesystem types
+	networkmanager net-tools wireless_tools \                              # Networking packages
+	wireplumber pipewire-pulse pipewire-jack \                             # Audio packages
+	libva-$LIBVA-driver gstreamer-vaapi \                                  # Hardware video codecs
 
 genfstab -U /mnt > /mnt/etc/fstab
 if [ $SHELL = fish ]
