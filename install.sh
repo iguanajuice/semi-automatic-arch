@@ -33,12 +33,12 @@ echo "#!/bin/sh
 
 	echo '
 Password for root:'
-	passwd
+	while true; do passwd && break; done
 	chsh -s /bin/"$_SHELL"
 	useradd -m "$_USER"
 	echo '
 Password for "$_USER"'
-	passwd "$_USER"
+	while true; do passwd "$_USER" && break; done
 	usermod -s /bin/"$_SHELL" -aG wheel "$_USER"
 
 	echo '
