@@ -3,7 +3,7 @@
 HAVEREAD=0 # Set this to 1 if you have read this script
 
 if [ $HAVEREAD = 0 ]
-	then echo Please read through \`semi-automatic-arch/install.sh\` and configure it where necessary
+	then echo Please read through semi-automatic-arch/install.sh and configure it where necessary
 	exit
 fi
 
@@ -80,11 +80,11 @@ Ready to edit pacman config, optional repos can be enabled at the bottom by unco
 	systemctl enable NetworkManager
 
 	echo '
-All done, press enter then Ctrl+D and run command `reboot` to restart your system'
+All done, press enter then Ctrl+D and run command reboot to restart your system'
 	read
  	rm setup.sh
 	exit
 " > /mnt/setup.sh
 echo '
-Entering system using chroot, please run command `sh setup.sh`'
+Entering system using chroot, please run command sh setup.sh'
 arch-chroot /mnt
