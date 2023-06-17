@@ -21,7 +21,8 @@ pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_
 	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                                      `# Support additional filesystem types` \
 	networkmanager net-tools wireless_tools                                                `# Networking packages` \
 	wireplumber pipewire-pulse pipewire-jack                                               `# Audio packages` \
-	libva-$LIBVA-driver gstreamer-vaapi                                                    `# Hardware video codecs`
+	libva-$LIBVA-driver gstreamer-vaapi                                                    `# Hardware video codecs` \
+ 	ttf-droid noto-fonts-emoji                                                             `# Unicode character support`
 
 genfstab /mnt > /mnt/etc/fstab
 echo permit persist keepenv :wheel > /mnt/etc/doas.conf
