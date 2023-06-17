@@ -59,8 +59,7 @@ echo "#!/bin/sh
 	echo '
 	#[chaotic-aur]
 	#Include = /etc/pacman.d/chaotic-mirrorlist' >> /etc/pacman.conf
- 	pacman --noconfirm -Syu > /dev/null
-	
+
 	sed -ie 's/#Parallel/Parallel/g' /etc/pacman.conf
 	sed -ie 's/#Color/Color/g' /etc/pacman.conf
 	sed -ie 's/#IgnorePkg/IgnorePkg/g' /etc/pacman.conf
@@ -69,6 +68,7 @@ echo "#!/bin/sh
 	echo About to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue
 	read
 	"$EDITOR" /etc/pacman.conf
+ 	pacman --noconfirm -Syu > /dev/null
 
 	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf
 	systemctl enable NetworkManager
