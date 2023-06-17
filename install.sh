@@ -24,6 +24,7 @@ pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_
 	libva-$LIBVA-driver gstreamer-vaapi                                                    `# Hardware video codecs`
 
 genfstab /mnt > /mnt/etc/fstab
+echo permit persist keepenv :wheel > /mnt/etc/doas.conf
 if [ $_SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
 fi
