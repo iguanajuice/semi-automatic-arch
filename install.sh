@@ -77,5 +77,5 @@ echo "#!/bin/sh
 	read
 	exit
 " > /mnt/tmp/setup.sh
-echo About to enter system using chroot, press enter and run command \`sh /tmp/setup.sh\`
+echo Entering system using chroot, please run command \`sh /tmp/setup.sh\`
 arch-chroot /mnt
