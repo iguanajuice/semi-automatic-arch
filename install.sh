@@ -10,7 +10,7 @@ fi
 _USER=user        # Name of auto-generated user
 _EDITOR=micro     # micro > nano :)
 _SHELL=fish       # Set default interactive shell, does NOT change system shell
-KERNEL=linux      # Pick which Linux kernel you want: linux, linux-lts, linux-zen, linux-rt linux-rt-lts
+KERNEL=linux      # Pick which Linux kernel you want: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
 UCODE=            # Set to either amd-ucode or intel-ucode or leave blank if using neither
 LIBVA=mesa        # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
 
