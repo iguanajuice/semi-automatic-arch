@@ -30,16 +30,18 @@ echo "#!/bin/sh
 	ln -s /usr/bin/doas /usr/local/bin/sudo
 	pacman --noconfirm -Rndd sudo > /dev/null
 
-	echo Password for root:
+	echo '
+Password for root:'
 	passwd
 	chsh -s /bin/"$_SHELL"
 	useradd -m "$_USER"
-	echo Password for "$_USER"
+	echo '
+Password for "$_USER"'
 	passwd "$_USER"
 	usermod -s /bin/"$_SHELL" -aG wheel "$_USER"
 
 	echo '
- Uncomment your keyboard locale from the upcoming list...press enter to continue'
+Uncomment your keyboard locale from the upcoming list...press enter to continue'
 	read
 	"$_EDITOR" /etc/locale.gen
 	locale-gen | awk 'NR==2 {print substr(\$1,1,length(\$1)-3)}' > /etc/locale.conf
@@ -47,7 +49,7 @@ echo "#!/bin/sh
 
 	grub-install
 	echo '
- Edit the GRUB configuration if you like...press enter to continue'
+Edit the GRUB configuration if you like...press enter to continue'
 	read
 	"$_EDITOR" /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
@@ -68,7 +70,7 @@ echo "#!/bin/sh
 	sed -ie 's/#IgnoreGroup/IgnoreGroup/g' /etc/pacman.conf
 
 	echo '
- About to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue'
+About to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue'
 	read
 	"$_EDITOR" /etc/pacman.conf
  	pacman --noconfirm -Syu > /dev/null
