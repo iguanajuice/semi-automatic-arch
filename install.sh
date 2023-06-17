@@ -79,10 +79,11 @@ Ready to edit pacman config, optional repos can be enabled at the bottom by unco
 	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf
 	systemctl enable NetworkManager
 
- 	rm setup.sh
+ 	rm install.sh
 	exit
 " > /mnt/install.sh
 
 arch-chroot /mnt sh install.sh
+sleep 0.1
 echo '
 All done, run command reboot to restart your system'
