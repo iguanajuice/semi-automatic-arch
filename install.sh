@@ -7,12 +7,12 @@ if [ $HAVEREAD = 0 ]
 	exit
 fi
 
-USER=user        # Name of auto-generated user
-EDITOR=micro     # micro > nano :)
-SHELL=fish       # Set default interactive shell, does NOT change system shell
-KERNEL=linux     # Pick which Linux kernel you want: linux, linux-lts, linux-zen, linux-rt linux-rt-lts
-UCODE=           # Set to either amd-ucode or intel-ucode or leave blank if using neither
-LIBVA=mesa       # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
+_USER=user        # Name of auto-generated user
+_EDITOR=micro     # micro > nano :)
+_SHELL=fish       # Set default interactive shell, does NOT change system shell
+KERNEL=linux      # Pick which Linux kernel you want: linux, linux-lts, linux-zen, linux-rt linux-rt-lts
+UCODE=            # Set to either amd-ucode or intel-ucode or leave blank if using neither
+LIBVA=mesa        # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
 
 sed -ie 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt base base-devel $KERNEL $KERNEL-headers $UCODE doas $EDITOR `# Core packages` \
