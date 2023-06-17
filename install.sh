@@ -79,4 +79,3 @@ echo "#!/bin/sh
 " > /mnt/tmp/setup.sh
 echo About to enter system using chroot, press enter and run command \`sh /tmp/setup.sh\`
 arch-chroot /mnt
-clear
