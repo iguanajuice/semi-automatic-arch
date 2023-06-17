@@ -2,7 +2,7 @@
 
 HAVEREAD=0 # Set this to 1 if you have read this script
 
-if [ $HAVEREAD = 0 ]
+if [ $HAVEREAD = 1 ]
 	then echo Please read through \`semi-automatic-arch/install.sh\` and configure it where necessary
 	exit
 fi
@@ -21,7 +21,7 @@ pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_
 	lvm2 ntfs-3g                                                         `# Support additional filesystem types` \
 	networkmanager net-tools wireless_tools                              `# Networking packages` \
 	wireplumber pipewire-pulse pipewire-jack                             `# Audio packages` \
-	libva-$LIBVA-driver gstreamer-vaapi                                  `# Hardware video codecs`
+	#libva-$LIBVA-driver gstreamer-vaapi                                  `# Hardware video codecs`
 
 genfstab -U /mnt > /mnt/etc/fstab
 if [ $_SHELL = fish ]
