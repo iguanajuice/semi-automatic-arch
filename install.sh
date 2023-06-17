@@ -39,7 +39,7 @@ echo "#!/bin/sh
 	usermod -s /bin/"$_SHELL" -aG wheel "$_USER"
 
 	echo '
- 	Uncomment your keyboard locale from the upcoming list...press enter to continue'
+ Uncomment your keyboard locale from the upcoming list...press enter to continue'
 	read
 	"$_EDITOR" /etc/locale.gen
 	locale-gen | awk 'NR==2 {print substr(\$1,1,length(\$1)-3)}' > /etc/locale.conf
@@ -47,7 +47,7 @@ echo "#!/bin/sh
 
 	grub-install
 	echo '
- 	Edit the GRUB configuration if you like...press enter to continue'
+ Edit the GRUB configuration if you like...press enter to continue'
 	read
 	"$_EDITOR" /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
@@ -59,15 +59,16 @@ echo "#!/bin/sh
 	pacman-key --lsign-key 3056513887B78AEB
 	pacman -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 	echo '
-	#[chaotic-aur]
-	#Include = /etc/pacman.d/chaotic-mirrorlist' >> /etc/pacman.conf
+#[chaotic-aur]
+#Include = /etc/pacman.d/chaotic-mirrorlist' >> /etc/pacman.conf
 
 	sed -ie 's/#Parallel/Parallel/g' /etc/pacman.conf
 	sed -ie 's/#Color/Color/g' /etc/pacman.conf
 	sed -ie 's/#IgnorePkg/IgnorePkg/g' /etc/pacman.conf
 	sed -ie 's/#IgnoreGroup/IgnoreGroup/g' /etc/pacman.conf
 
-	echo About to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue
+	echo '
+ About to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue'
 	read
 	"$_EDITOR" /etc/pacman.conf
  	pacman --noconfirm -Syu > /dev/null
