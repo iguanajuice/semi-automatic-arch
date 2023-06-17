@@ -69,6 +69,7 @@ echo "#!/bin/sh
 	read
 	"$EDITOR" /etc/pacman.conf
 
+	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf
 	systemctl enable NetworkManager
 
 	echo All done, press enter and run command \`reboot\` to restart your system'
