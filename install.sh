@@ -20,7 +20,7 @@ pacstrap -K /mnt base base-devel $KERNEL $KERNEL-headers $UCODE doas $EDITOR \ #
 	lvm2 ntfs-3g \                                                         # Support additional filesystem types
 	networkmanager net-tools wireless_tools \                              # Networking packages
 	wireplumber pipewire-pulse pipewire-jack \                             # Audio packages
-	libva-$LIBVA-driver gstreamer-vaapi \                                  # Hardware video codecs
+	libva-$LIBVA-driver gstreamer-vaapi                                    # Hardware video codecs
 
 genfstab -U /mnt > /mnt/etc/fstab
 if [ $SHELL = fish ]
