@@ -35,24 +35,24 @@ echo "#!/bin/sh
 	echo '
 Password for root:'
 	while true; do passwd && break; done
-	chsh -s /bin/"$_SHELL"
-	useradd -m "$_USER" -s /bin/"$_SHELL" -G wheel
+	chsh -s /bin/$_SHELL
+	useradd -m $_USER -s /bin/$_SHELL -G wheel
 	echo '
-Password for "$_USER"'
-	while true; do passwd "$_USER" && break; done
+Password for $_USER'
+	while true; do passwd $_USER && break; done
 
 	echo '
 Uncomment your keyboard locale from the upcoming list...press enter to continue'
 	read
-	"$_EDITOR" /etc/locale.gen
+	$_EDITOR /etc/locale.gen
 	locale-gen | awk 'NR==2 {print substr(\$1,1,length(\$1)-3)}' > /tmp/locale
-	echo LANG=$(cat /tmp/locale) > /etc/locale.conf
+	echo LANG=\$(cat /tmp/locale) > /etc/locale.conf
 
 	grub-install
 	echo '
 Edit the GRUB configuration if you like...press enter to continue'
 	read
-	"$_EDITOR" /etc/default/grub
+	$_EDITOR /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
 
 	pacman-key --init
@@ -73,7 +73,7 @@ Edit the GRUB configuration if you like...press enter to continue'
 	echo '
 Ready to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue'
 	read
-	"$_EDITOR" /etc/pacman.conf
+	$_EDITOR /etc/pacman.conf
  	pacman --noconfirm -Syu > /dev/null
 
 	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf
