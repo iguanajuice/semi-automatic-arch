@@ -1,8 +1,8 @@
 #!/bin/sh
 
-HAVEREAD=0 # Set this to 1 if you have read this script
+#HAVEREAD=1 # Uncomment if you have read this script
 
-if [ $HAVEREAD = 0 ]
+if [ $HAVEREAD != 1 ]
 	then echo Please read through semi-automatic-arch/install.sh and configure it where necessary
 	exit
 fi
