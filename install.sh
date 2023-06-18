@@ -17,7 +17,7 @@ LIBVA=mesa        # Driver for hardware video encoding/decoding: Radeon=mesa, In
 sed -ie 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_EDITOR $_SHELL `# Core packages` \
 	grub efibootmgr                                                                        `# Bootloader packages` \
-	git wget htop neofetch man-db usbutils arch-install-scripts                            `# Miscellaneous CLI tools` \
+	git wget htop neofetch man-db usbutils dmidecode arch-install-scripts                  `# Miscellaneous CLI tools` \
 	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                                      `# Support additional filesystem types` \
 	networkmanager net-tools wireless_tools                                                `# Networking packages` \
 	wireplumber pipewire-pulse pipewire-jack                                               `# Audio packages` \
@@ -29,7 +29,7 @@ echo permit persist keepenv :wheel > /mnt/etc/doas.conf
 if [ $_SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
 fi
-echo "#!/bin/sh
+arch-chroot /mnt sh -c "
 	ln -s /usr/bin/doas /usr/local/bin/sudo
 	pacman --noconfirm -Rndd sudo > /dev/null
 
@@ -80,11 +80,8 @@ Ready to edit pacman config, optional repos can be enabled at the bottom by unco
 	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf
 	systemctl enable NetworkManager
 
- 	rm install.sh
 	exit
-" > /mnt/install.sh
-
-arch-chroot /mnt sh install.sh
+"
 sleep 0.5
 echo '
 All done, run command reboot to restart your system'
