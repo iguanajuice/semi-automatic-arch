@@ -79,5 +79,4 @@ arch-chroot /mnt sh -c "
 
 	exit
 "
-sleep 0.5
 echo -e '\n All done, run command reboot to restart your system'
