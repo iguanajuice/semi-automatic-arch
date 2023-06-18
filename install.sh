@@ -7,8 +7,8 @@ if [ $HAVEREAD = 0 ]
 	exit
 fi
 
-_USER=user        # Name of auto-generated user
-_EDITOR=micro     # micro > nano :)
+_USER=user        # Name of auto-generated user (set as blank if you wish to not create one)
+_EDITOR=micro     # Set terminal-based text editor
 _SHELL=fish       # Set default interactive shell, does NOT change system shell
 KERNEL=linux      # Pick which Linux kernel you want: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
 UCODE=            # Set to either amd-ucode or intel-ucode or leave blank if using neither
@@ -33,25 +33,23 @@ arch-chroot /mnt sh -c "
 	ln -s /usr/bin/doas /usr/local/bin/sudo
 	pacman --noconfirm -Rndd sudo > /dev/null
 
-	echo '
-Password for root:'
+	echo -e '\n Password for root:'
 	while true; do passwd && break; done
 	chsh -s /bin/$_SHELL
-	useradd -m $_USER -s /bin/$_SHELL -G wheel
-	echo '
-Password for $_USER'
-	while true; do passwd $_USER && break; done
-
-	echo '
-Uncomment your keyboard locale from the upcoming list...press enter to continue'
+ 	if [ -n \"$_USER\" ]
+  	then
+		useradd -m $_USER -s /bin/$_SHELL -G wheel
+		echo -e '\n Password for $_USER'
+		while true; do passwd $_USER && break; done
+	fi
+	echo -e '\n Uncomment your keyboard locale from the upcoming list...press enter to continue'
 	read
 	$_EDITOR /etc/locale.gen
 	locale-gen | awk 'NR==2 {print substr(\$1,1,length(\$1)-3)}' > /tmp/locale
 	echo LANG=\$(cat /tmp/locale) > /etc/locale.conf
 
 	grub-install
-	echo '
-Edit the GRUB configuration if you like...press enter to continue'
+	echo -e '\n Edit the GRUB configuration if you like...press enter to continue'
 	read
 	$_EDITOR /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
@@ -71,8 +69,7 @@ Edit the GRUB configuration if you like...press enter to continue'
 	sed -ie 's/#IgnorePkg/IgnorePkg/g' /etc/pacman.conf
 	sed -ie 's/#IgnoreGroup/IgnoreGroup/g' /etc/pacman.conf
 
-	echo '
-Ready to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue'
+	echo -e '\n Ready to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue'
 	read
 	$_EDITOR /etc/pacman.conf
  	pacman --noconfirm -Syu > /dev/null
@@ -83,5 +80,4 @@ Ready to edit pacman config, optional repos can be enabled at the bottom by unco
 	exit
 "
 sleep 0.5
-echo '
-All done, run command reboot to restart your system'
+echo -e '\n All done, run command reboot to restart your system'
