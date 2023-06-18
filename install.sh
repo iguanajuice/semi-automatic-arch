@@ -1,14 +1,14 @@
 #!/bin/sh
 
-HAVEREAD=0 # Set this to 1 if you have read this script
-
-if [ $HAVEREAD = 0 ]
-	then echo Please read through semi-automatic-arch/install.sh and configure it where necessary
+if [ $1 != start ]
+then
+	echo Please read through install.sh and configure it where necessary
+ 	echo then rerun the script using command: install.sh start
 	exit
 fi
 
 _USER=user        # Name of auto-generated user (set as blank if you wish to not create one)
-_EDITOR=micro     # Set terminal-based text editor
+_EDITOR=micro     # Choice for terminal-based text editor
 _SHELL=fish       # Set default interactive shell, does NOT change system shell
 KERNEL=linux      # Pick which Linux kernel you want: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
 UCODE=            # Set to either amd-ucode or intel-ucode or leave blank if using neither
