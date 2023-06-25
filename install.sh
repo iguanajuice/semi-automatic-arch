@@ -49,9 +49,8 @@ arch-chroot /mnt sh -c "
 	echo LANG=\$(cat /tmp/locale) > /etc/locale.conf
 
 	grub-install
-	echo -e '\n Edit the GRUB configuration if you like...press enter to continue'
-	read
-	$_EDITOR /etc/default/grub
+	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/pacman.conf
+ 	sed -i 's/, quiet//g' /etc/pacman.conf
 	grub-mkconfig -o /boot/grub/grub.cfg
 
 	pacman-key --init
