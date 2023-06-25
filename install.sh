@@ -50,7 +50,7 @@ arch-chroot /mnt sh -c "
 
 	grub-install
 	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/pacman.conf
- 	sed -i 's/, quiet//g' /etc/pacman.conf
+ 	sed -i 's/ quiet//g' /etc/pacman.conf
 	grub-mkconfig -o /boot/grub/grub.cfg
 
 	pacman-key --init
