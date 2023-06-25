@@ -61,17 +61,14 @@ arch-chroot /mnt sh -c "
 	pacman-key --lsign-key 3056513887B78AEB
 	pacman --noconfirm -U 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-keyring.pkg.tar.zst' 'https://cdn-mirror.chaotic.cx/chaotic-aur/chaotic-mirrorlist.pkg.tar.zst'
 	echo '
-#[chaotic-aur]
-#Include = /etc/pacman.d/chaotic-mirrorlist' >> /etc/pacman.conf
+[chaotic-aur]
+Include = /etc/pacman.d/chaotic-mirrorlist' >> /etc/pacman.conf
 
-	sed -ie 's/#Parallel/Parallel/g' /etc/pacman.conf
-	sed -ie 's/#Color/Color/g' /etc/pacman.conf
-	sed -ie 's/#IgnorePkg/IgnorePkg/g' /etc/pacman.conf
-	sed -ie 's/#IgnoreGroup/IgnoreGroup/g' /etc/pacman.conf
-
-	echo -e '\n Ready to edit pacman config, optional repos can be enabled at the bottom by uncommenting them...press enter to continue'
-	read
-	$_EDITOR /etc/pacman.conf
+	sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf
+	sed -i 's/#Color/Color/g' /etc/pacman.conf
+	sed -i 's/#IgnorePkg/IgnorePkg/g' /etc/pacman.conf
+	sed -i 's/#IgnoreGroup/IgnoreGroup/g' /etc/pacman.conf
+ 	sed -i '90,91 s/#//' /etc/pacman.conf
  	pacman --noconfirm -Syu > /dev/null
 
 	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf
