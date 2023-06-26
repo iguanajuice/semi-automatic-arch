@@ -33,7 +33,7 @@ arch-chroot /mnt sh -c "
 	ln -s /usr/bin/doas /usr/local/bin/sudo
 	pacman --noconfirm -Rndd sudo > /dev/null
 
-	echo -e '\n Password for root (can be left blank):'
+	echo -e '\n Password for root:'
 	while true; do passwd && break; done
 	chsh -s /bin/$_SHELL
  	if [ -n \"$_USER\" ]
