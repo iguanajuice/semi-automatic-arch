@@ -16,13 +16,13 @@ LIBVA=mesa        # Driver for hardware video encoding/decoding: Radeon=mesa, In
 
 sed -ie 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_EDITOR $_SHELL `# Core packages` \
-	grub efibootmgr                                                                        `# Bootloader packages` \
-	git wget htop neofetch man-db usbutils dmidecode arch-install-scripts                  `# Miscellaneous CLI tools` \
-	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                                      `# Support additional filesystem types` \
-	networkmanager net-tools wireless_tools                                                `# Networking packages` \
-	wireplumber pipewire-pulse pipewire-jack                                              `# Audio packages` \
-	libva-$LIBVA-driver gstreamer-vaapi                                                   `# Hardware video codecs` \
- 	ttf-droid noto-fonts-emoji                                                            `# Unicode character support`
+	grub efibootmgr                                                        `# Bootloader packages` \
+	git wget htop neofetch man-db usbutils dmidecode arch-install-scripts  `# Miscellaneous CLI tools` \
+	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                      `# Support additional filesystem types` \
+	networkmanager net-tools wireless_tools                                `# Networking packages` \
+	wireplumber pipewire-pulse pipewire-jack                               `# Audio packages` \
+	libva-$LIBVA-driver gstreamer-vaapi                                    `# Hardware video codecs` \
+ 	ttf-droid noto-fonts-emoji                                             `# Unicode character support`
 
 genfstab /mnt > /mnt/etc/fstab
 echo permit persist keepenv :wheel > /mnt/etc/doas.conf
