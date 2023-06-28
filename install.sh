@@ -16,14 +16,14 @@ LIBVA=mesa        # Driver for hardware video encoding/decoding: Radeon=mesa, In
 
 sed -ie 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_EDITOR $_SHELL `# Core packages` \
-	grub efibootmgr                                                        `# Bootloader packages` \
-	git wget htop neofetch man-db usbutils dmidecode arch-install-scripts  `# Miscellaneous CLI tools` \
-	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                      `# Support additional filesystem types` \
-	networkmanager net-tools wireless_tools                                `# Networking packages` \
-	wireplumber pipewire-pulse pipewire-jack                               `# Audio packages` \
-	libva-$LIBVA-driver gstreamer-vaapi                                    `# Hardware video codecs` \
-  	noto-fonts noto-fonts-cjk noto-fonts-emoji                             `# Wider unicode support` \
- 	libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu       `# Extra fonts`
+	grub efibootmgr                                                                 `# Bootloader packages` \
+	git wget htop neofetch man-db usbutils dmidecode arch-install-scripts           `# Miscellaneous CLI tools` \
+	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Support for other filesystems` \
+	networkmanager net-tools wireless_tools                                         `# Networking packages` \
+	wireplumber pipewire-pulse pipewire-jack                                        `# Audio packages` \
+	libva-$LIBVA-driver gstreamer-vaapi                                             `# Hardware video codecs` \
+  	noto-fonts noto-fonts-cjk noto-fonts-emoji ttf-droid                            `# Wider unicode support` \
+ 	gnu-free-fonts libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu `# Extra fonts`
 
 genfstab /mnt > /mnt/etc/fstab
 echo permit persist keepenv :wheel > /mnt/etc/doas.conf
