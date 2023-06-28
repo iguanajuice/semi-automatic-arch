@@ -22,8 +22,8 @@ pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_
 	networkmanager net-tools wireless_tools                                `# Networking packages` \
 	wireplumber pipewire-pulse pipewire-jack                               `# Audio packages` \
 	libva-$LIBVA-driver gstreamer-vaapi                                    `# Hardware video codecs` \
- 	libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu \
-  	ttf-droid noto-fonts noto-fonts-cjk noto-fonts-emoji                   `# Full unicode and font support`
+  	ttf-droid noto-fonts noto-fonts-cjk noto-fonts-emoji                   `# Wider unicode support` \
+ 	libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu       `# Extra fonts`
 
 genfstab /mnt > /mnt/etc/fstab
 echo permit persist keepenv :wheel > /mnt/etc/doas.conf
