@@ -22,7 +22,7 @@ pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_
 	networkmanager net-tools wireless_tools                                `# Networking packages` \
 	wireplumber pipewire-pulse pipewire-jack                               `# Audio packages` \
 	libva-$LIBVA-driver gstreamer-vaapi                                    `# Hardware video codecs` \
- 	ttf-droid noto-fonts-emoji                                             `# Unicode character support`
+ 	ttf-droid noto-fonts noto-fonts-emoji                                  `# Unicode character support`
 
 genfstab /mnt > /mnt/etc/fstab
 echo permit persist keepenv :wheel > /mnt/etc/doas.conf
