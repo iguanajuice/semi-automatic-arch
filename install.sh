@@ -48,9 +48,7 @@ arch-chroot /mnt sh -c "
 	$_EDITOR /etc/locale.gen
 	locale-gen | awk 'NR==2 {print substr(\$1,1,length(\$1)-3)}' > /tmp/locale
 	echo LANG=\$(cat /tmp/locale) > /etc/locale.conf
-
 	ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
- 	hwclock --systohc
 
 	grub-install
 	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/default/grub
