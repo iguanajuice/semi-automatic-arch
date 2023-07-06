@@ -7,14 +7,15 @@ then
 	exit
 fi
 
-_USER=user        # Name of auto-generated user (set as blank if you wish to not create one)
-_EDITOR=micro     # Choice for terminal-based text editor
-_SHELL=fish       # Set default interactive shell, does NOT change system shell
-KERNEL=linux      # Pick which Linux kernel you want: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
-UCODE=            # Set to either amd-ucode or intel-ucode or leave blank if using neither
-LIBVA=mesa        # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
+_USER=user          # Name of auto-generated user (set as blank if you wish to not create one)
+_EDITOR=micro       # Choice for terminal-based text editor
+_SHELL=fish         # Set default interactive shell, does NOT change system shell
+KERNEL=linux        # Pick which Linux kernel you want: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
+UCODE=              # Set to either amd-ucode or intel-ucode or leave blank if using neither
+LIBVA=mesa          # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
+TZ=America/New_York # Your timezone (Region/City). Timezones can be found in /usr/share/zoneinfo
 
-sed -ie 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
+sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers $UCODE doas $_EDITOR $_SHELL `# Core packages` \
 	grub efibootmgr                                                                 `# Bootloader packages` \
 	git wget htop neofetch man-db usbutils dmidecode arch-install-scripts           `# Miscellaneous CLI tools` \
@@ -48,7 +49,7 @@ arch-chroot /mnt sh -c "
 	$_EDITOR /etc/locale.gen
 	locale-gen | awk 'NR==2 {print substr(\$1,1,length(\$1)-3)}' > /tmp/locale
 	echo LANG=\$(cat /tmp/locale) > /etc/locale.conf
-	ln -sf /usr/share/zoneinfo/America/New_York /etc/localtime
+	ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
 
 	grub-install
 	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/default/grub
@@ -71,9 +72,13 @@ Include = /etc/pacman.d/chaotic-mirrorlist' >> /etc/pacman.conf
 	sed -i 's/#IgnoreGroup/IgnoreGroup/g' /etc/pacman.conf
  	sed -i '90,91 s/#//' /etc/pacman.conf
  	pacman --noconfirm -Syu > /dev/null
-
+   
 	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf
 	systemctl enable NetworkManager
+
+	sed -i 's/#DefaultTimeoutStartSec=90s/DefaultTimeoutStartSec=10s/g' /etc/systemd/system.conf
+ 	sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/g' /etc/systemd/system.conf
+  	sed -i 's/#DefaultDeviceTimeoutSec=90s/DefaultDeviceTimeoutSec=10s/g' /etc/systemd/system.conf
 
 	exit
 "
