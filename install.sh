@@ -44,7 +44,7 @@ arch-chroot /mnt sh -c "
 		echo -e '\n Password for $_USER'
 		while true; do passwd $_USER && break; done
 	fi
-	echo -e '\n Uncomment your keyboard locale from the upcoming list...press enter to continue'
+	echo -e '\n Uncomment your locale from the upcoming list...press enter to continue'
 	read
 	$_EDITOR /etc/locale.gen
 	locale-gen | awk 'NR==2 {print substr(\$1,1,length(\$1)-3)}' > /tmp/locale
