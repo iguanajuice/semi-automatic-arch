@@ -3,7 +3,7 @@
 if [[ $1 != start ]]
 then
 	echo Please read through install.sh and configure it where necessary
- 	echo then rerun the script using command: install.sh start
+ 	echo then rerun the script using command: sh install.sh start
 	exit
 fi
 
