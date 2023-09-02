@@ -18,7 +18,7 @@ TZ=America/New_York # Your timezone (Region/City). Timezones can be found in /us
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE doas $_EDITOR $_SHELL `# Core packages` \
 	grub efibootmgr                                                                 `# Bootloader packages` \
-	git wget htop neofetch man-db usbutils dmidecode arch-install-scripts           `# Miscellaneous CLI tools` \
+	git wget btop neofetch man-db usbutils dmidecode arch-install-scripts           `# Miscellaneous CLI tools` \
 	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Support for other filesystems` \
 	networkmanager net-tools wireless_tools                                         `# Networking packages` \
 	wireplumber pipewire-pulse pipewire-jack                                        `# Audio packages` \
