@@ -7,10 +7,11 @@ then
 	exit
 fi
 
-_USER=user          # Name of auto-generated user (set as blank if you wish to not create one)
+_USER=user          # Username of auto-generated user (set as blank if you wish to not create one)
+FULLNAME='John Doe' # Full name of auto-generated user (be sure to use quotes)
 _EDITOR=micro       # Choice for terminal-based text editor
 _SHELL=fish         # Set default interactive shell, does NOT change system shell
-KERNEL=linux        # Pick which Linux kernel you want: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
+KERNEL=linux        # Which Linux kernel to use: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
 UCODE=              # Set to either amd-ucode or intel-ucode or leave blank if using neither
 LIBVA=mesa          # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
 TZ=America/New_York # Your timezone (Region/City). Timezones can be found in /usr/share/zoneinfo
@@ -40,7 +41,7 @@ arch-chroot /mnt sh -c "
 	chsh -s /bin/$_SHELL
  	if [ -n \"$_USER\" ]
   	then
-		useradd -m $_USER -s /bin/$_SHELL -G wheel
+		useradd -m $_USER -c $FULLNAME -s /bin/$_SHELL -G wheel
 		echo -e '\n Password for $_USER'
 		while true; do passwd $_USER && break; done
 	fi
