@@ -7,14 +7,14 @@ then
 	exit
 fi
 
-_USER=user          # Username of auto-generated user (set as blank if you wish to not create one)
-FULLNAME='John Doe' # Full name of auto-generated user (be sure to use quotes)
-_EDITOR=micro       # Choice for terminal-based text editor
-_SHELL=fish         # Set default interactive shell, does NOT change system shell
-KERNEL=linux        # Which Linux kernel to use: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
-UCODE=              # Set to either amd-ucode or intel-ucode or leave blank if using neither
-LIBVA=mesa          # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
-TZ=America/New_York # Your timezone (Region/City). Timezones can be found in /usr/share/zoneinfo
+_USER=user           # Username of auto-generated user (set as blank if you wish to not create one)
+FULLNAME='Arch User' # Full name of auto-generated user (be sure to use quotes)
+_EDITOR=micro        # Choice for terminal-based text editor
+_SHELL=fish          # Set default interactive shell, does NOT change system shell
+KERNEL=linux         # Which Linux kernel to use: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
+UCODE=               # Set to either amd-ucode or intel-ucode or leave blank if using neither
+LIBVA=mesa           # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
+TZ=America/New_York  # Your timezone (Region/City). Timezones can be found in /usr/share/zoneinfo
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE doas $_EDITOR $_SHELL `# Core packages` \
