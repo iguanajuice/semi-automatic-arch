@@ -14,7 +14,7 @@ _SHELL=fish          # Set default interactive shell, does NOT change system she
 KERNEL=linux         # Which Linux kernel to use: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
 UCODE=               # Set to either amd-ucode or intel-ucode or leave blank if using neither
 LIBVA=mesa           # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
-TZ=America/New_York  # Your timezone (Region/City). Timezones can be found in /usr/share/zoneinfo
+TZ=America/New_York  # Your timezone (Region/City). Your timezone can be found in /usr/share/zoneinfo
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE doas $_EDITOR $_SHELL `# Core packages` \
