@@ -18,11 +18,11 @@ TZ=America/New_York  # Your timezone (Region/City). Your timezone can be found i
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE doas $_EDITOR $_SHELL `# Core packages` \
-	grub efibootmgr                                                                 `# Bootloader packages` \
-	git wget btop neofetch man-db usbutils dmidecode arch-install-scripts           `# Miscellaneous CLI tools` \
-	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Support for other filesystems` \
-	networkmanager net-tools wireless_tools                                         `# Networking packages` \
-	wireplumber pipewire-pulse pipewire-jack                                        `# Audio packages` \
+	grub efibootmgr                                                                 `# Bootloader` \
+	git wget btop neofetch man-db usbutils dmidecode                                `# Miscellaneous CLI tools` \
+	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Filesystem support` \
+	networkmanager net-tools wireless_tools                                         `# Networking` \
+	wireplumber pipewire-pulse pipewire-jack                                        `# Audio` \
 	libva-$LIBVA-driver gstreamer-vaapi                                             `# Hardware video codecs` \
  	gnu-free-fonts libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu `# Extra fonts` \
   	noto-fonts noto-fonts-cjk noto-fonts-emoji                                      `# Full unicode support`
