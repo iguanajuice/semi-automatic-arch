@@ -21,7 +21,7 @@ pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware
 	grub efibootmgr                                                                 `# Bootloader` \
 	git wget btop neofetch man-db usbutils dmidecode                                `# Miscellaneous CLI tools` \
 	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Filesystem support` \
-	networkmanager net-tools wireless_tools                                         `# Networking` \
+	networkmanager net-tools wireless_tools iw                                      `# Networking` \
 	wireplumber pipewire-pulse pipewire-jack                                        `# Audio` \
 	libva-$LIBVA-driver gstreamer-vaapi                                             `# Hardware video codecs` \
  	gnu-free-fonts libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu `# Extra fonts` \
