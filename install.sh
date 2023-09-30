@@ -19,7 +19,7 @@ TZ=America/New_York  # Your timezone (Region/City). Your timezone can be found i
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE doas $_EDITOR $_SHELL `# Core packages` \
 	grub efibootmgr                                                                 `# Bootloader` \
-	git wget btop neofetch man-db usbutils dmidecode                                `# Miscellaneous CLI tools` \
+	git wget neofetch man-db usbutils dmidecode                                     `# Miscellaneous CLI tools` \
 	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Filesystem support` \
 	networkmanager net-tools wireless_tools iw                                      `# Networking` \
 	wireplumber pipewire-pulse pipewire-jack                                        `# Audio` \
@@ -28,7 +28,7 @@ pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware
   	noto-fonts noto-fonts-cjk noto-fonts-emoji                                      `# Full unicode support`
 
 genfstab -U /mnt > /mnt/etc/fstab
-sed -i 's/subvolid/_subvolid/g' > /mnt/etc/fstab # Timeshift doesn't play nice with subvolid ;)
+sed -i 's/subvolid/_subvolid/g' > /mnt/etc/fstab # Timeshift doesn't play nice with subvolid
 echo permit persist keepenv :wheel > /mnt/etc/doas.conf
 if [ $_SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
