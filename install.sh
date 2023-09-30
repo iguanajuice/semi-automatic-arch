@@ -28,7 +28,7 @@ pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware
   	noto-fonts noto-fonts-cjk noto-fonts-emoji                                      `# Full unicode support`
 
 genfstab -U /mnt > /mnt/etc/fstab
-sed -i 's/subvolid/_subvolid/g' > /mnt/etc/fstab # Timeshift doesn't play nice with subvolid
+sed -i 's/subvolid=//g' > /mnt/etc/fstab # Timeshift doesn't play nice with subvolid
 echo permit persist keepenv :wheel > /mnt/etc/doas.conf
 if [ $_SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
