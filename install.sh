@@ -39,6 +39,7 @@ arch-chroot /mnt sh -c "
 	ln /usr/bin/doas /usr/local/bin/sudo
  	ln /usr/bin/doas /usr/local/bin/s
   	ln /usr/bin/$_EDITOR /usr/local/bin/vi
+	ln /usr/bin/pacman /usr/local/bin/pm
    	ln /usr/bin/systemctl /usr/local/bin/sv
 
 	echo -e '\n Password for root:'
