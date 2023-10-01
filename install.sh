@@ -34,7 +34,7 @@ if [ $_SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
 fi
 arch-chroot /mnt sh -c "
-	ln -s /usr/bin/doas /usr/local/bin/sudo
+	ln /usr/bin/doas /usr/local/bin/sudo
 	pacman --noconfirm -Rndd sudo > /dev/null
 
 	echo -e '\n Password for root:'
