@@ -15,9 +15,11 @@ KERNEL=linux         # Which Linux kernel to use: linux, linux-lts, linux-zen, l
 UCODE=               # Set to either amd-ucode or intel-ucode or leave blank if using neither
 LIBVA=mesa           # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
 TZ=America/New_York  # Your timezone (Region/City). Your timezone can be found in /usr/share/zoneinfo
+ALIASES=false        # Option for generating aliases for sudo, pacman, systemctl, and $_EDITOR in `/usr/local/bin`
+USE_DOAS=true        # Replaces `sudo` with `doas` if set to true
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
-pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE doas $_EDITOR $_SHELL `# Core packages` \
+pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE $_EDITOR $_SHELL `# Core packages` \
 	grub efibootmgr                                                                 `# Bootloader` \
 	git wget neofetch man-db usbutils dmidecode                                     `# Miscellaneous CLI tools` \
 	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Filesystem support` \
@@ -33,14 +35,22 @@ echo permit persist keepenv :wheel > /mnt/etc/doas.conf
 if [ $_SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
 fi
+
+if [ $ALIASES = true ]
+then
+ 	ln /mnt/usr/bin/doas /mnt/usr/local/bin/s
+  	ln /mnt/usr/bin/$_EDITOR /mnt/usr/local/bin/vi
+	ln /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
+   	ln /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
+fi
+
 arch-chroot /mnt sh -c "
-	pacman --noconfirm -Rndd sudo > /dev/null
- 
-	ln /usr/bin/doas /usr/local/bin/sudo
- 	ln /usr/bin/doas /usr/local/bin/s
-  	ln /usr/bin/$_EDITOR /usr/local/bin/vi
-	ln /usr/bin/pacman /usr/local/bin/pm
-   	ln /usr/bin/systemctl /usr/local/bin/sv
+	if [ $USE_DOAS = true ]
+ 	then
+		pacman --noconfirm -Rndd sudo
+  		pacman --needed -S doas
+		ln /usr/bin/doas /usr/local/bin/sudo
+  	fi
 
 	echo -e '\n Password for root:'
 	while true; do passwd && break; done
