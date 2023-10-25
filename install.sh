@@ -7,20 +7,20 @@ then
 	exit
 fi
 
-_USER=user           # Username of auto-generated user (set as blank if you wish to not create one)
+USER=user           # Username of auto-generated user (set as blank if you wish to not create one)
 FULLNAME='Arch User' # Full name of auto-generated user (be sure to use quotes)
 HOSTNAME=archlinux   # The system's hostname
-_EDITOR=micro        # Choice for terminal-based text editor
-_SHELL=fish          # Set default interactive shell, does NOT change system shell
+EDITOR=micro        # Choice for terminal-based text editor
+SHELL=fish          # Set default interactive shell, does NOT change system shell
 KERNEL=linux         # Which Linux kernel to use: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
 UCODE=               # Set to either amd-ucode or intel-ucode or leave blank if using neither
-LIBVA=mesa           # Driver for hardware video encoding/decoding: Radeon=mesa, Intel=intel, Nvidia=vdpau
+LIBVA=mesa           # Driver for hardware video codecs: Radeon=mesa, Intel=intel, Nvidia=vdpau
 TZ=America/New_York  # Your timezone (Region/City). Your timezone can be found in /usr/share/zoneinfo
-ALIASES=false        # Option for generating aliases for sudo, pacman, systemctl, and $_EDITOR in `/usr/local/bin`
-USE_DOAS=true        # Replaces `sudo` with `doas` if set to true
+ALIASES=false        # Generate aliases for sudo, pacman, systemctl, and $_EDITOR in `/usr/local/bin`
+USE_DOAS=true        # Replaces `sudo` with `doas`
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
-pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE $_EDITOR $_SHELL `# Core packages` \
+pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE $EDITOR $SHELL `# Core packages` \
 	grub efibootmgr                                                                 `# Bootloader` \
 	git wget neofetch man-db usbutils dmidecode                                     `# Miscellaneous CLI tools` \
 	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Filesystem support` \
@@ -33,14 +33,14 @@ pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware
 genfstab -U /mnt > /mnt/etc/fstab
 sed -i 's/subvolid=//g' > /mnt/etc/fstab # Timeshift doesn't play nice with subvolid
 echo permit persist keepenv :wheel > /mnt/etc/doas.conf
-if [ $_SHELL = fish ]
+if [ $SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
 fi
 
 if [ $ALIASES = true ]
 then
  	ln /mnt/usr/bin/doas /mnt/usr/local/bin/s
-  	ln /mnt/usr/bin/$_EDITOR /mnt/usr/local/bin/vi
+  	ln /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
 	ln /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
    	ln /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
 fi
@@ -57,16 +57,16 @@ arch-chroot /mnt sh -c "
 
 	echo -e '\n Password for root:'
 	while true; do passwd && break; done
-	chsh -s /bin/$_SHELL
- 	if [ -n \"$_USER\" ]
+	chsh -s /bin/$SHELL
+ 	if [ -n \"$USER\" ]
   	then
-		useradd -m $_USER -c '$FULLNAME' -s /bin/$_SHELL -G wheel
-		echo -e '\n Password for $_USER'
-		while true; do passwd $_USER && break; done
+		useradd -m $USER -c '$FULLNAME' -s /bin/$SHELL -G wheel
+		echo -e '\n Password for $USER'
+		while true; do passwd $USER && break; done
 	fi
 	echo -e '\n Uncomment your keyboard locale from the upcoming list...press enter to continue'
 	read
-	$_EDITOR /etc/locale.gen
+	$EDITOR /etc/locale.gen
 	locale-gen | awk 'NR==2 {print substr(\$1,1,length(\$1)-3)}' > /tmp/locale
 	echo LANG=\$(cat /tmp/locale) > /etc/locale.conf
 	ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
