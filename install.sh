@@ -38,8 +38,6 @@ if [ $SHELL = fish ]
 fi
 
 arch-chroot /mnt sh -c "
-	hostnamectl set-hostname $HOSTNAME
-
 	if [ $USE_DOAS = true ]
  	then
 		pacman --noconfirm -Rndd sudo
@@ -51,12 +49,14 @@ arch-chroot /mnt sh -c "
 	echo -e '\n Password for root:'
 	while true; do passwd && break; done
 	chsh -s /bin/$SHELL
- 	if [ -n \"$USER\" ]
+ 	if [ -n $USER ]
   	then
 		useradd -m $USER -c '$FULLNAME' -s /bin/$SHELL -G wheel
 		echo -e '\n Password for $USER'
 		while true; do passwd $USER && break; done
 	fi
+ 	echo $HOSTNAME > /etc/hostname
+ 
 	echo -e '\n Uncomment your keyboard locale from the upcoming list...press enter to continue'
 	read
 	$EDITOR /etc/locale.gen
