@@ -22,7 +22,7 @@ USE_DOAS=true        # Replaces `sudo` with `doas`
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE $EDITOR $SHELL `# Core packages` \
 	grub efibootmgr                                                                 `# Bootloader` \
-	git wget neofetch man-db usbutils dmidecode                                     `# Miscellaneous CLI tools` \
+	arch-install-scripts git wget neofetch man-db usbutils dmidecode                `# Miscellaneous CLI tools` \
 	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Filesystem support` \
 	networkmanager net-tools wireless_tools iw                                      `# Networking` \
 	wireplumber pipewire-pulse pipewire-jack pipewire-alsa                          `# Audio` \
