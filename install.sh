@@ -22,7 +22,7 @@ USE_DOAS=true        # Replaces `sudo` with `doas`
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE $EDITOR $SHELL `# Core packages` \
 	grub efibootmgr                                                                 `# Bootloader` \
-	arch-install-scripts git wget neofetch man-db usbutils dmidecode                `# Miscellaneous CLI tools` \
+	arch-install-scripts git wget neofetch man-db usbugentils dmidecode                `# Miscellaneous CLI tools` \
 	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Filesystem support` \
 	networkmanager net-tools wireless_tools iw                                      `# Networking` \
 	wireplumber pipewire-pulse pipewire-jack pipewire-alsa                          `# Audio` \
@@ -31,8 +31,8 @@ pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware
   	noto-fonts noto-fonts-cjk noto-fonts-emoji                                      `# Full unicode support`
 
 genfstab -U /mnt > /mnt/etc/fstab
-sed -i 's/subvolid=//g' > /mnt/etc/fstab # Timeshift doesn't play nice with subvolid
-echo permit persist keepenv :wheel > /mnt/etc/doas.conf
+sed -i 's/subvolid=//g' # Timeshift doesn't play nice with subvolid
+
 if [ $SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
 fi
@@ -45,6 +45,7 @@ arch-chroot /mnt sh -c "
 		pacman --noconfirm -Rndd sudo
   		pacman --noconfirm --needed -S doas
 		ln /usr/bin/doas /usr/local/bin/sudo
+  		echo permit persist keepenv :wheel > /etc/doas.conf
   	fi
 
 	echo -e '\n Password for root:'
