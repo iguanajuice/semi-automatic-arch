@@ -37,21 +37,13 @@ if [ $SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
 fi
 
-if [ $ALIASES = true ]
-then
- 	ln /mnt/usr/bin/doas /mnt/usr/local/bin/s
-  	ln /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
-	ln /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
-   	ln /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
-fi
-
 arch-chroot /mnt sh -c "
 	hostnamectl set-hostname $HOSTNAME
 
 	if [ $USE_DOAS = true ]
  	then
 		pacman --noconfirm -Rndd sudo
-  		pacman --needed -S doas
+  		pacman --noconfirm --needed -S doas
 		ln /usr/bin/doas /usr/local/bin/sudo
   	fi
 
@@ -102,4 +94,19 @@ Include = /etc/pacman.d/chaotic-mirrorlist' >> /etc/pacman.conf
 
 	exit
 "
+
+if [ $ALIASES = true ]
+then
+ 	if [ $USE_DOAS = true ]
+	then
+ 		ln /mnt/usr/bin/doas /mnt/usr/local/bin/s
+   	else
+    		ln /mnt/usr/bin/sudo /mnt/usr/local/bin/s
+	fi
+
+	ln /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
+	ln /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
+   	ln /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
+fi
+
 echo -e '\n All done, run command reboot to restart your system'
