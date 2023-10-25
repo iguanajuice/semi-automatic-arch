@@ -9,6 +9,7 @@ fi
 
 _USER=user           # Username of auto-generated user (set as blank if you wish to not create one)
 FULLNAME='Arch User' # Full name of auto-generated user (be sure to use quotes)
+HOSTNAME=archlinux   # The system's hostname
 _EDITOR=micro        # Choice for terminal-based text editor
 _SHELL=fish          # Set default interactive shell, does NOT change system shell
 KERNEL=linux         # Which Linux kernel to use: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
@@ -45,6 +46,8 @@ then
 fi
 
 arch-chroot /mnt sh -c "
+	hostnamectl set-hostname $HOSTNAME
+
 	if [ $USE_DOAS = true ]
  	then
 		pacman --noconfirm -Rndd sudo
