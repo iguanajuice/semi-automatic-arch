@@ -16,7 +16,7 @@ KERNEL=linux         # Which Linux kernel to use: linux, linux-lts, linux-zen, l
 UCODE=               # Set to either amd-ucode or intel-ucode or leave blank if using neither
 LIBVA=mesa           # Driver for hardware video codecs: Radeon=mesa, Intel=intel, Nvidia=vdpau
 TZ=America/New_York  # Your timezone (Region/City). Your timezone can be found in /usr/share/zoneinfo
-ALIASES=false        # Generate aliases for sudo, pacman, systemctl, and $_EDITOR in `/usr/local/bin`
+ALIASES=false        # Generate aliases for sudo, pacman, systemctl, and $EDITOR in `/usr/local/bin`
 USE_DOAS=true        # Replaces `sudo` with `doas`
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
