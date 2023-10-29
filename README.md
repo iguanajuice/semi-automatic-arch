@@ -58,3 +58,17 @@ cd semi-automatic-arch
 nano install.sh
 ```
 Once finsihed with configuration, press `Ctrl+s` and `Ctrl+x` to save and quit, then run `sh install.sh start` to begin installation.
+
+# GUI:
+
+This script does not install a desktop environment nor window manager.
+
+If you aren't sure on how to install one, here's how:
+`
+KDE Plasma (X11): `sudo pacman -S plasma dolphin gwenview konsole`
+KDE Plasma (X11 & Wayland): `sudo pacman -S plasma plasma-wayland-session dolphin gwenview konsole`
+GNOME: `sudo pamcan -S gnome`
+GNOME w/extras `sudo pacman -S gnome gnome-extras`
+Cinnamon: `sudo pacman -S cinnamon eog gnome-terminal`
+MATE: `sudo pacman -S mate mate-extra`
+XFCE: `sudo pacman -S xfce4 eog`
