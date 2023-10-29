@@ -59,22 +59,42 @@ nano install.sh
 ```
 Once finsihed with configuration, press `Ctrl+s` and `Ctrl+x` to save and quit, then run `sh install.sh start` to begin installation.
 
-# GUI:
+# Where is my user interface?
 
 This script does not install a desktop environment.
 
 If you aren't sure on how to install one, here's how:
-`
-KDE Plasma (X11): `sudo pacman -S plasma dolphin gwenview konsole`
 
-KDE Plasma (X11 & Wayland): `sudo pacman -S plasma plasma-wayland-session dolphin gwenview konsole`
-
-GNOME: `sudo pamcan -S gnome`
-
-GNOME w/extras `sudo pacman -S gnome gnome-extras`
-
-Cinnamon: `sudo pacman -S cinnamon eog gnome-terminal`
-
-MATE: `sudo pacman -S mate mate-extra`
-
-XFCE: `sudo pacman -S xfce4 eog`
+KDE Plasma:
+```
+sudo pacman -S plasma plasma-wayland-session dolphin gwenview konsole
+sudo sed -i 's/Current=/Current=breeze/g' /usr/lib/sddm/sddm.conf.d/default.conf
+sudo systemctl enable --now sddm
+```
+GNOME: 
+```
+sudo pamcan -S gnome
+sudo systemctl enable --now gdm
+```
+GNOME w/extras: 
+```
+sudo pamcan -S gnome gnome-extras
+sudo systemctl enable --now gdm
+```
+Cinnamon:
+```
+sudo pacman -S cinnamon eog nemo-fileroller gnome-terminal lightdm-slick-greeter
+sudo sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter' /etc/lightdm/lightdm.conf
+sudo systemctl enable --now lightdm
+```
+MATE:
+```
+sudo pacman -S mate mate-extra lightdm-gtk-greeter
+sudo systemctl enable --now lightdm
+su
+```
+XFCE:
+```
+sudo pacman -S xfce4 eog lightdm-gtk-greeter
+sudo systemctl enable --now lightdm
+```
