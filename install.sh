@@ -84,9 +84,10 @@ arch-chroot /mnt sh -c "
  	sed -i '90,91 s/#//' /etc/pacman.conf # You can't really tell, but this enables multilib
  	pacman --noconfirm -Syu > /dev/null
 
-	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf
+	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf # Enable REISUB keys
 	systemctl enable NetworkManager
 
+	# If something goes wrong, you won't have to wait 90 seconds to find out
 	sed -i 's/#DefaultTimeoutStartSec=90s/DefaultTimeoutStartSec=10s/g' /etc/systemd/system.conf
  	sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/g' /etc/systemd/system.conf
   	sed -i 's/#DefaultDeviceTimeoutSec=90s/DefaultDeviceTimeoutSec=10s/g' /etc/systemd/system.conf
