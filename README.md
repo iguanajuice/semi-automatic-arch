@@ -14,7 +14,7 @@ Create a partion sized 512m. This will be your `efi` partition. Make note of its
 
 Change type to "EFI Partition".
 
-Create a second partition at least 50g in size. This will be your `root` partition. Also make note of its name, e.g. `/dev/sda2`.
+Create a second partition *at least 50g* in size. This will be your `root` partition. Also make note of its name, e.g. `/dev/sda2`.
 
 Select option `write` and enter "yes".
 
