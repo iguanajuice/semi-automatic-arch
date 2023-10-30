@@ -115,7 +115,7 @@ This creates the shortcuts in your file manager's side pane.
 
 # Make your system bullet proof:
 
-Since we are using `btrfs` as our filesystem, we can easily make snapshots of our system using `timeshift` and then boot into those snapshots directly using `grub-btrfs`. This way, even if we break our system to the point it's unbootable, we can still restore from a working snapshot.
+Since we're using `btrfs` as our filesystem, we can easily make snapshots of our system using `timeshift` and then boot into those snapshots directly using `grub-btrfs`. This way, even if we break our system to the point it's unbootable, we can still restore from a working snapshot.
 
 Here's how to set it up:
 
