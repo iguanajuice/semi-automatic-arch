@@ -93,7 +93,6 @@ MATE:
 ```
 sudo pacman -S mate mate-extra lightdm-gtk-greeter
 sudo systemctl enable --now lightdm
-su
 ```
 XFCE:
 ```
