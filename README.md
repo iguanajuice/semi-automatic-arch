@@ -2,6 +2,8 @@
 
 **Disclaimer: This guide is for UEFI only. I also recommend not installing to a disk with important data on it, unless you know what you're doing or have a backup.**
 
+*This script has you mount and partition your disks manually. I made it this way since I never had much luck with `arch-install`'s partitioner, so doing it myself gives me better control and is more predictable.*
+
 Locate target disk: `lsblk` *- In this guide we'll use the name `/dev/sda`, be sure to substitute `/dev/sda` with your disk's actual name.*
 
 Partition disk: `cfdisk /dev/sda`
