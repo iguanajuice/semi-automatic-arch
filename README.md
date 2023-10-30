@@ -4,6 +4,10 @@
 
 # Installation:
 
+Connect to wifi (optional): iwctl station wlan0 connect [your wifi's name here]
+
+Test internet connection: `ping archlinux.org` *- 'Ctrl+c' to stop pinging*
+
 Locate target disk: `lsblk` *- In this guide we'll use the name `/dev/sda`, be sure to substitute `/dev/sda` with your disk's actual name.*
 
 Partition disk: `cfdisk /dev/sda`
@@ -14,7 +18,7 @@ Create a partion sized 512m. This will be your `efi` partition. Make note of its
 
 Change type to "EFI Partition".
 
-Create a second partition *at least* 50g in size. This will be your `root` partition. Also make note of its name, e.g. `/dev/sda2`.
+Create a second partition of *at least* 50g, or preferably the remaining space. This will be your `root` partition. Also make note of its name, e.g. `/dev/sda2`.
 
 Select option `write` and enter "yes".
 
@@ -101,10 +105,16 @@ XFCE:
 sudo pacman -S xfce4 eog lightdm-gtk-greeter
 sudo systemctl enable --now lightdm
 ```
-After installing your DE of choice, run: `xdg-user-dirs-update` to create your user directories.
+After installing your DE of choice, run:
+```
+sudo pacman -S xdg-user-dirs
+xdg-user-dirs-update
+```
+...to create your user directories.
 
 If using Cinnamon, MATE, or XFCE; also run:
 ```
+mkdir ~/.config/gtk-3.0
 echo 'file:///home/lel/Documents Documents
 file:///home/lel/Downloads Downloads
 file:///home/lel/Music Music
