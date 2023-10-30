@@ -113,7 +113,7 @@ file:///home/lel/Videos Videos' > ~/.config/gtk-3.0/bookmarks
 ```
 This creates the shortcuts in your file manager's side pane.
 
-# Make you system bullet proof:
+# Make your system bullet proof:
 
 Since we are using `btrfs` as our filesystem, we can easily make snapshots of our system using `timeshift` and then boot into those snapshots directly using `grub-btrfs`. This way, even if we break our system to the point it's unbootable, we can still restore from a working snapshot.
 
