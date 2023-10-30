@@ -65,7 +65,7 @@ This script does not install a desktop environment.
 
 If you aren't sure on how to install one, here's how:
 
-*(This will also install a greeter, file manager, image viewer, and terminal emulator for their respective DE.)*
+*(This will also install a greeter, file manager, image viewer, and terminal emulator.)*
 
 KDE Plasma:
 ```
@@ -86,19 +86,17 @@ sudo systemctl enable --now gdm
 Cinnamon:
 ```
 sudo pacman -S cinnamon eog nemo-fileroller gnome-terminal lightdm-slick-greeter
-xdg-user-dirs-update
 sudo sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter' /etc/lightdm/lightdm.conf
 sudo systemctl enable --now lightdm
 ```
 MATE:
 ```
 sudo pacman -S mate mate-extra lightdm-gtk-greeter
-xdg-user-dirs-update
 sudo systemctl enable --now lightdm
 ```
 XFCE:
 ```
 sudo pacman -S xfce4 eog lightdm-gtk-greeter
-xdg-user-dirs-update
 sudo systemctl enable --now lightdm
 ```
+After installing your DE of choice, run `xdg-user-dirs-update`.
