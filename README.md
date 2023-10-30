@@ -109,4 +109,4 @@ file:///home/lel/Music Music
 file:///home/lel/Pictures Pictures
 file:///home/lel/Videos Videos' > ~/.config/gtk-3.0/bookmarks
 ```
-*(This creates the shortcuts in your file manager's and file picker's side pane.)*
+*(This creates the shortcuts in your file manager's side pane.)*
