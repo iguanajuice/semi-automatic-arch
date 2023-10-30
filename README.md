@@ -1,6 +1,6 @@
 # Usage:
 
-**Disclaimer: This guide is for UEFI only. I also recommend not installing to a disk with important data on it, unless you know what you're doing.**
+**Disclaimer: This guide is for UEFI only. I also recommend not installing to a disk with important data on it, unless you know what you're doing or have a backup.**
 
 Locate target disk: `lsblk` *- In this guide we'll use the name `/dev/sda`, be sure to substitute `/dev/sda` with your disk's actual name.*
 
