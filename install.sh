@@ -47,18 +47,18 @@ arch-chroot /mnt sh -c "
 		echo permit persist keepenv :wheel > /etc/doas.conf
 	fi
 
-	echo -e '\n Password for root:'
+	echo -e '\n~ Password for root:'
 	while true; do passwd && break; done
 	chsh -s /bin/$SHELL
 	if [ -n $USER ]
 	then
 		useradd -m $USER -c '$FULLNAME' -s /bin/$SHELL -G wheel
-		echo -e '\n Password for $USER'
+		echo -e '\n~ Password for $USER'
 		while true; do passwd $USER && break; done
 	fi
 	echo $HOSTNAME > /etc/hostname
 
-	echo -e '\n Uncomment your keyboard locale from the upcoming list...press enter to continue'
+	echo -e '\n~ Uncomment your keyboard locale from the upcoming list...press enter to continue'
 	read
 	$EDITOR /etc/locale.gen
 	locale-gen | awk 'NR==2 {print substr(\$1,1,length(\$1)-3)}' > /tmp/locale
@@ -110,4 +110,4 @@ then
 	ln /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
 fi
 
-echo -e '\n All done, run command reboot to restart your system'
+echo -e '\n~ All done, run command reboot to restart your system'
