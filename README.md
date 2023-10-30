@@ -48,7 +48,7 @@ swapon /mnt/swap/swapfile
 ```
 *Note: `-s` sets the size of your swap; it's recommended to have at least as much swap as RAM.*
 
-Verify that swap is working: `free-h`
+Verify that swap is working: `free -h`
 
 Download and configure `semi-automatic-arch`:
 ```
