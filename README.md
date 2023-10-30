@@ -138,6 +138,10 @@ Sanity check: `systemctl status grub-btrfsd`
 
 `Ctrl+d` to exit `su`.
 
+# Nvidia:
+
+Linux comes with an in-kernel graphics driver for nvidia called `nouveau`. While this works fine for basic usage, performance for games is lackluster; so it's recommended to install the proprietery driver for gaming: https://wiki.archlinux.org/title/NVIDIA
+
 # Closing notes:
 
 Even with everything in this guide and all the creature comforts the script installs for you, Arch is still very barebones; you'll be missing quite a bit of stuff, such as:
