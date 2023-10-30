@@ -85,7 +85,7 @@ sudo systemctl enable --now gdm
 ```
 Cinnamon:
 ```
-sudo pacman -S cinnamon eog nemo-fileroller gnome-terminal lightdm-slick-greeter
+sudo pacman -S cinnamon eog nemo-fileroller gnome-terminal mint-themes mint-y-icons lightdm-slick-greeter
 sudo sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter' /etc/lightdm/lightdm.conf
 sudo systemctl enable --now lightdm
 ```
