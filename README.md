@@ -140,7 +140,7 @@ Sanity check: `systemctl status grub-btrfsd`
 
 # Closing notes:
 
-Even with everything in this guide and all the creature comforts the script installs for you, Arch is still very barebones; you'll be missing quit a bit of stuff, such as:
+Even with everything in this guide and all the creature comforts the script installs for you, Arch is still very barebones; you'll be missing quite a bit of stuff, such as:
 
 * A web browser (firefox, chromium)
 * A media player (vlc, mpv, celluloid)
