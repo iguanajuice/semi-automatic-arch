@@ -110,3 +110,40 @@ file:///home/lel/Pictures Pictures
 file:///home/lel/Videos Videos' > ~/.config/gtk-3.0/bookmarks
 ```
 This creates the shortcuts in your file manager's side pane.
+
+# Make you system bullet proof:
+
+Since we are using `btrfs` as our filesystem, we can easily make snapshots of our system using `timeshift` and then boot into those snapshots directly using `grub-btrfs`. This way, even if we break our system to the point it's unbootable, we can still restore from a working snapshot.
+
+Here's how to set it up:
+
+Install the required packages: `sudo pacman -S timeshift grub-btrfs inotify-tools`
+
+Launch and setup Timeshift from your menu or app launcher, or run command `sudo timeshift-launcher`.
+
+Edit `grub-btrfsd.service`:
+```
+EDITOR=[your editor of choice] su
+systemctl edit --full grub-btrfsd
+```
+Change `--syslog /.snapshots` to `-t`
+
+Save and quit.
+
+Enable the service: `systemctl enable --now grub-btrfsd`
+
+Sanity check: `systemctl status grub-btrfsd`
+
+`Ctrl+d` to exit `su`.
+
+# Closing notes:
+
+Even with everything in this guide and all the creature comforts the script installs for you, Arch is still very barebones; you'll be missing quit a bit of stuff, such as:
+
+* A web browser (firefox, chromium)
+* A media player (vlc, mpv, celluloid)
+* A graphical text editor (gedit, kate)
+* A games launcher (steam, lutris)
+* A software center (gnome-software, pamac-nosnap)
+
+You are never truly done with installing Arch, you are always tinkering and adding new stuff. Have fun!
