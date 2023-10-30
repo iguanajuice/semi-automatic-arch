@@ -18,7 +18,7 @@ Select option `write` and enter "yes".
 
 Press 'q' to quit.
 
-Create the filesystem on `efi`: `mkfs.fat /dev/sda1` *- Remember to substitute `/dev/sda` with the partition's actual name.*
+Create the filesystem on `efi`: `mkfs.fat /dev/sda1` *- Remember to substitute `/dev/sda1` with the partition's actual name.*
 
 Create the filesystem on `root`: `mkfs.btrfs -f /dev/sda2` *- It's recommended to use `btrfs` over `ext4`.*
 
