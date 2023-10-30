@@ -7,11 +7,11 @@ then
 	exit
 fi
 
-USER=user           # Username of auto-generated user (set as blank if you wish to not create one)
+USER=user            # Username of auto-generated user (set as blank if you wish to not create one)
 FULLNAME='Arch User' # Full name of auto-generated user (be sure to use quotes)
 HOSTNAME=archlinux   # The system's hostname
-EDITOR=micro        # Choice for terminal-based text editor
-SHELL=fish          # Set default interactive shell, does NOT change system shell
+EDITOR=micro         # Choice for terminal-based text editor
+SHELL=fish           # Set default interactive shell, does NOT change system shell
 KERNEL=linux         # Which Linux kernel to use: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
 UCODE=               # Set to either amd-ucode or intel-ucode or leave blank if using neither
 LIBVA=mesa           # Driver for hardware video codecs: Radeon=mesa, Intel=intel, Nvidia=vdpau
