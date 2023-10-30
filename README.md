@@ -99,7 +99,7 @@ XFCE:
 sudo pacman -S xfce4 eog lightdm-gtk-greeter
 sudo systemctl enable --now lightdm
 ```
-After installing your DE of choice, run: `xdg-user-dirs-update` to create your user directories
+After installing your DE of choice, run: `xdg-user-dirs-update` to create your user directories.
 
 If using Cinnamon, MATE, or XFCE; also run:
 ```
