@@ -32,7 +32,7 @@ pacstrap -K /mnt --needed \
 	noto-fonts noto-fonts-cjk noto-fonts-emoji                                      `# Full unicode support`
 
 genfstab -U /mnt > /mnt/etc/fstab
-sed -i 's/subvolid=//g' # Timeshift doesn't play nice with subvolid
+sed -i 's/subvolid=//g' /mnt/etc/fstab # Timeshift doesn't play nice with subvolid
 
 if [ $SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
