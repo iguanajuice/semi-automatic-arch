@@ -99,4 +99,13 @@ XFCE:
 sudo pacman -S xfce4 eog lightdm-gtk-greeter
 sudo systemctl enable --now lightdm
 ```
-After installing your DE of choice, run `xdg-user-dirs-update`.
+After installing your DE of choice, run: `xdg-user-dirs-update`
+
+If using Cinnamon, MATE, or XFCE; also run:
+```
+echo 'file:///home/lel/Documents Documents
+file:///home/lel/Downloads Downloads
+file:///home/lel/Music Music
+file:///home/lel/Pictures Pictures
+file:///home/lel/Videos Videos' > ~/.config/gtk-3.0/bookmarks
+```
