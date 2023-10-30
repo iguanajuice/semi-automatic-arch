@@ -65,6 +65,8 @@ This script does not install a desktop environment.
 
 If you aren't sure on how to install one, here's how:
 
+*(This will also install a greeter, file manager, image viewer, and terminal emulator of their respective DE.)*
+
 KDE Plasma:
 ```
 sudo pacman -S plasma plasma-wayland-session dolphin gwenview konsole
