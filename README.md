@@ -129,7 +129,7 @@ Since we're using `btrfs` as our filesystem, we can easily make snapshots of the
 
 Here's how to set it up:
 
-Install the required packages: `sudo pacman -S timeshift grub-btrfs inotify-tools`
+Install the required packages: `sudo pacman -S timeshift grub-btrfs inotify-tools xorg-xhost`
 
 Launch and setup Timeshift from your menu or app launcher, or run command `sudo timeshift-launcher`.
 
