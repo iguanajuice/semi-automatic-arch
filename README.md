@@ -99,7 +99,7 @@ XFCE:
 sudo pacman -S xfce4 eog lightdm-gtk-greeter
 sudo systemctl enable --now lightdm
 ```
-After installing your DE of choice, run: `xdg-user-dirs-update`
+After installing your DE of choice, run: `xdg-user-dirs-update` to create your user directories
 
 If using Cinnamon, MATE, or XFCE; also run:
 ```
@@ -109,3 +109,4 @@ file:///home/lel/Music Music
 file:///home/lel/Pictures Pictures
 file:///home/lel/Videos Videos' > ~/.config/gtk-3.0/bookmarks
 ```
+*(This creates the shortcuts in your file manager's and file picker's side pane.)*
