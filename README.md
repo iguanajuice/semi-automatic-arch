@@ -86,16 +86,19 @@ sudo systemctl enable --now gdm
 Cinnamon:
 ```
 sudo pacman -S cinnamon eog nemo-fileroller gnome-terminal lightdm-slick-greeter
+xdg-user-dirs-update
 sudo sed -i 's/#greeter-session=example-gtk-gnome/greeter-session=lightdm-slick-greeter' /etc/lightdm/lightdm.conf
 sudo systemctl enable --now lightdm
 ```
 MATE:
 ```
 sudo pacman -S mate mate-extra lightdm-gtk-greeter
+xdg-user-dirs-update
 sudo systemctl enable --now lightdm
 ```
 XFCE:
 ```
 sudo pacman -S xfce4 eog lightdm-gtk-greeter
+xdg-user-dirs-update
 sudo systemctl enable --now lightdm
 ```
