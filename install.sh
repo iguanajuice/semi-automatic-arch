@@ -3,7 +3,7 @@
 if [[ $1 != start ]]
 then
 	echo Please read through install.sh and configure it where necessary
- 	echo then rerun the script using command: sh install.sh start
+	echo then rerun the script using command: sh install.sh start
 	exit
 fi
 
@@ -20,15 +20,16 @@ ALIASES=false        # Generate aliases for sudo, pacman, systemctl, and $EDITOR
 USE_DOAS=true        # Replaces `sudo` with `doas`
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
-pacstrap -K /mnt --needed base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE $EDITOR $SHELL `# Core packages` \
+pacstrap -K /mnt --needed \
+	base base-devel $KERNEL $KERNEL-headers linux-firmware $UCODE $EDITOR $SHELL    `# Core packages` \
 	grub efibootmgr                                                                 `# Bootloader` \
 	arch-install-scripts git wget neofetch man-db usbutils dmidecode                `# Miscellaneous CLI tools` \
 	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Extra filesystem support` \
 	networkmanager net-tools wireless_tools iw                                      `# Networking` \
 	wireplumber pipewire-pulse pipewire-jack pipewire-alsa                          `# Audio` \
 	libva-$LIBVA-driver gstreamer-vaapi                                             `# Hardware video codecs` \
- 	gnu-free-fonts libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu `# Extra fonts` \
-  	noto-fonts noto-fonts-cjk noto-fonts-emoji                                      `# Full unicode support`
+	gnu-free-fonts libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu `# Extra fonts` \
+	noto-fonts noto-fonts-cjk noto-fonts-emoji                                      `# Full unicode support`
 
 genfstab -U /mnt > /mnt/etc/fstab
 sed -i 's/subvolid=//g' # Timeshift doesn't play nice with subvolid
@@ -39,23 +40,23 @@ fi
 
 arch-chroot /mnt sh -c "
 	if [ $USE_DOAS = true ]
- 	then
+	then
 		pacman --noconfirm -Rndd sudo
-  		pacman --noconfirm --needed -S doas
+		pacman --noconfirm --needed -S doas
 		ln /usr/bin/doas /usr/local/bin/sudo
-  		echo permit persist keepenv :wheel > /etc/doas.conf
-  	fi
+		echo permit persist keepenv :wheel > /etc/doas.conf
+	fi
 
 	echo -e '\n Password for root:'
 	while true; do passwd && break; done
 	chsh -s /bin/$SHELL
- 	if [ -n $USER ]
-  	then
+	if [ -n $USER ]
+	then
 		useradd -m $USER -c '$FULLNAME' -s /bin/$SHELL -G wheel
 		echo -e '\n Password for $USER'
 		while true; do passwd $USER && break; done
 	fi
- 	echo $HOSTNAME > /etc/hostname
+	echo $HOSTNAME > /etc/hostname
 
 	echo -e '\n Uncomment your keyboard locale from the upcoming list...press enter to continue'
 	read
@@ -66,7 +67,7 @@ arch-chroot /mnt sh -c "
 
 	grub-install
 	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/default/grub
- 	sed -i 's/ quiet//g' /etc/default/grub
+	sed -i 's/ quiet//g' /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
 
 	pacman-key --init
@@ -81,32 +82,32 @@ arch-chroot /mnt sh -c "
 	sed -i 's/#Color/Color/g' /etc/pacman.conf
 	sed -i 's/#IgnorePkg/IgnorePkg/g' /etc/pacman.conf
 	sed -i 's/#IgnoreGroup/IgnoreGroup/g' /etc/pacman.conf
- 	sed -i '90,91 s/#//' /etc/pacman.conf # You can't really tell, but this enables multilib
- 	pacman --noconfirm -Syu > /dev/null
+	sed -i '90,91 s/#//' /etc/pacman.conf # You can't really tell, but this enables multilib
+	pacman --noconfirm -Syu > /dev/null
 
 	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf # Enable REISUB keys
 	systemctl enable NetworkManager
 
 	# If something goes wrong, you won't have to wait 90 seconds to find out
 	sed -i 's/#DefaultTimeoutStartSec=90s/DefaultTimeoutStartSec=10s/g' /etc/systemd/system.conf
- 	sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/g' /etc/systemd/system.conf
-  	sed -i 's/#DefaultDeviceTimeoutSec=90s/DefaultDeviceTimeoutSec=10s/g' /etc/systemd/system.conf
+	sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/g' /etc/systemd/system.conf
+	sed -i 's/#DefaultDeviceTimeoutSec=90s/DefaultDeviceTimeoutSec=10s/g' /etc/systemd/system.conf
 
 	exit
 "
 
 if [ $ALIASES = true ]
 then
- 	if [ $USE_DOAS = true ]
+	if [ $USE_DOAS = true ]
 	then
- 		ln /mnt/usr/bin/doas /mnt/usr/local/bin/s
-   	else
-    		ln /mnt/usr/bin/sudo /mnt/usr/local/bin/s
+		ln /mnt/usr/bin/doas /mnt/usr/local/bin/s
+	else
+		ln /mnt/usr/bin/sudo /mnt/usr/local/bin/s
 	fi
 
 	ln /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
 	ln /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
-   	ln /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
+	ln /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
 fi
 
 echo -e '\n All done, run command reboot to restart your system'
