@@ -102,7 +102,7 @@ sudo systemctl enable --now lightdm
 ```
 XFCE:
 ```
-sudo pacman -S xfce4 eog lightdm-gtk-greeter
+sudo pacman -S xfce4 xfce4-goodies lightdm-gtk-greeter
 sudo systemctl enable --now lightdm
 ```
 After installing your DE of choice, run:
