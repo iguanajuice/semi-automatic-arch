@@ -43,7 +43,7 @@ arch-chroot /mnt sh -c "
 	then
 		pacman --noconfirm -Rndd sudo
 		pacman --noconfirm --needed -S doas
-		ln /usr/bin/doas /usr/local/bin/sudo
+		ln -s /usr/bin/doas /usr/local/bin/sudo
 		echo permit persist keepenv :wheel > /etc/doas.conf
 	fi
 
@@ -100,9 +100,9 @@ if [ $ALIASES = true ]
 then
 	if [ $USE_DOAS = true ]
 	then
-		ln /mnt/usr/bin/doas /mnt/usr/local/bin/s
+		ln -s /mnt/usr/bin/doas /mnt/usr/local/bin/s
 	else
-		ln /mnt/usr/bin/sudo /mnt/usr/local/bin/s
+		ln -s /mnt/usr/bin/sudo /mnt/usr/local/bin/s
 	fi
 
 	ln -s /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
