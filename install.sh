@@ -105,9 +105,9 @@ then
 		ln /mnt/usr/bin/sudo /mnt/usr/local/bin/s
 	fi
 
-	ln /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
-	ln /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
-	ln /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
+	ln -s /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
+	ln -s /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
+	ln -s /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
 fi
 
 echo -e '\n~ All done, run command reboot to restart your system'
