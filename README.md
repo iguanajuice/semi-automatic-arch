@@ -165,4 +165,4 @@ Even with everything in this guide and all the creature comforts the script inst
 * A games launcher (steam, lutris)
 * A software center (gnome-software, pamac-nosnap)
 
-*You are never truly done with installing Arch, you are always tinkering and adding new stuff. Have fun!*
+Check out the offical Arch wiki for more info and helpful guides: https://wiki.archlinux.org/
