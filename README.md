@@ -153,7 +153,7 @@ Sanity check: `systemctl status grub-btrfsd`
 
 # Nvidia:
 
-Linux comes with an in-kernel graphics driver for nvidia called `nouveau`. While this works fine for basic usage, performance for games is lackluster; so it's recommended to install the proprietery driver for gaming: https://wiki.archlinux.org/title/NVIDIA
+Linux comes with an in-kernel graphics drivers for nvidia called `nouveau`. While this works fine for basic usage, performance for games is lackluster; so it's recommended to install the proprietery driver for gaming: https://wiki.archlinux.org/title/NVIDIA
 
 # Closing notes:
 
