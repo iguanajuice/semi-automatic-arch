@@ -4,7 +4,7 @@
 
 # Installation:
 
-Connect to wifi, if needed: iwctl station wlan0 connect [your wifi's name here]
+Connect to wifi, if needed: `iwctl station wlan0 connect [your wifi's name here]`
 
 Test internet connection: `ping archlinux.org` *- 'Ctrl+c' to stop pinging*
 
