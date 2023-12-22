@@ -165,4 +165,4 @@ Even with everything in this guide and all the creature comforts the script inst
 * A games launcher (steam, lutris)
 * A software center (gnome-software, pamac-nosnap)
 
-Check out the offical Arch wiki for more info and helpful guides: https://wiki.archlinux.org/
+Check out the official Arch wiki for more info and helpful guides: https://wiki.archlinux.org/
