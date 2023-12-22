@@ -138,7 +138,7 @@ Launch and setup Timeshift from your menu or app launcher, or run command `sudo 
 
 Edit `grub-btrfsd.service`:
 ```
-EDITOR=[your editor of choice] su
+EDITOR=your_editor_of_choice su
 systemctl edit --full grub-btrfsd
 ```
 Change `--syslog /.snapshots` to `-t`
