@@ -38,6 +38,20 @@ if [ $SHELL = fish ]
 	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
 fi
 
+if [ $ALIASES = true ]
+then
+	if [ $USE_DOAS = true ]
+	then
+		ln -s /mnt/usr/bin/doas /mnt/usr/local/bin/s
+	else
+		ln -s /mnt/usr/bin/sudo /mnt/usr/local/bin/s
+	fi
+
+	ln -s /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
+	ln -s /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
+	ln -s /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
+fi
+
 arch-chroot /mnt sh -c "
 	if [ $USE_DOAS = true ]
 	then
@@ -95,19 +109,5 @@ arch-chroot /mnt sh -c "
 
 	exit
 "
-
-if [ $ALIASES = true ]
-then
-	if [ $USE_DOAS = true ]
-	then
-		ln -s /mnt/usr/bin/doas /mnt/usr/local/bin/s
-	else
-		ln -s /mnt/usr/bin/sudo /mnt/usr/local/bin/s
-	fi
-
-	ln -s /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
-	ln -s /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
-	ln -s /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
-fi
 
 echo -e '\n~ All done, run command reboot to restart your system'
