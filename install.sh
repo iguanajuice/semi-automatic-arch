@@ -60,7 +60,9 @@ arch-chroot /mnt sh -c "
 		pacman --noconfirm --needed -S doas
 		ln -s /usr/bin/doas /usr/local/bin/sudo
 		echo permit persist keepenv :wheel > /etc/doas.conf
-	fi
+	else
+ 		sed -i 's/# %wheel ALL=(ALL:ALL) ALL/%wheel ALL=(ALL:ALL) ALL/g' /etc/sudoers
+   	fi
 
 	echo -e '\n~ Password for root:'
 	while true; do passwd && break; done
