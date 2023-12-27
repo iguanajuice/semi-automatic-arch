@@ -18,6 +18,7 @@ LIBVA=mesa           # Driver for hardware video codecs: Radeon=mesa, Intel=inte
 TZ=America/New_York  # Your timezone (Region/City). Your timezone can be found in /usr/share/zoneinfo
 ALIASES=false        # Generate aliases for sudo, pacman, systemctl, and $EDITOR in /usr/local/bin
 USE_DOAS=true        # Replaces `sudo` with `doas`
+MBRDISK=             # Ignore if using UEFI
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed \
@@ -79,7 +80,7 @@ arch-chroot /mnt sh -c "
 	echo LANG=\$(cat /tmp/locale) > /etc/locale.conf
 	ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
 
-	grub-install
+	grub-install $MBRDISK
 	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/default/grub
 	sed -i 's/ quiet//g' /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
