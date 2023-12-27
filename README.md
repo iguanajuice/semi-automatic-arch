@@ -16,7 +16,7 @@ Select option `gpt` if prompted.
 
 Create a partion sized 512m. This will be your `efi` partition. Make note of its name, e.g. `/dev/sda1`.
 
-Change type to "EFI Partition".
+Change type to "EFI System".
 
 Create a second partition of *at least* 50g, or preferably the remaining space. This will be your `root` partition. Also make note of its name, e.g. `/dev/sda2`.
 
