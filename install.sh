@@ -41,9 +41,9 @@ fi
 
 if [ $ALIASES = true ]
 then
-	ln -s /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
-	ln -s /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
-	ln -s /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
+	ln -s /mnt/usr/bin/$EDITOR /usr/local/bin/vi
+	ln -s /mnt/usr/bin/pacman /usr/local/bin/pm
+	ln -s /mnt/usr/bin/systemctl /usr/local/bin/sv
 
 	if [ $USE_DOAS = true ]
 	then
