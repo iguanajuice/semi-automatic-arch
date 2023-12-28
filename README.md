@@ -126,7 +126,7 @@ file:///home/lel/Music Music
 file:///home/lel/Pictures Pictures
 file:///home/lel/Videos Videos' > ~/.config/gtk-3.0/bookmarks
 ```
-This creates the shortcuts in your file manager's side pane.
+...to create the shortcuts in your file manager's side pane.
 
 # Make your system bullet proof:
 
