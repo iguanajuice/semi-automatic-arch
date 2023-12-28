@@ -35,25 +35,28 @@ pacstrap -K /mnt --needed \
 genfstab -U /mnt > /mnt/etc/fstab
 sed -i 's/subvolid=//g' /mnt/etc/fstab # Timeshift doesn't play nice with subvolid
 
-if [ $SHELL = fish ]
-	then echo -e '\nset fish_greeting' > /mnt/etc/fish/config.fish
-fi
 
-if [ $ALIASES = true ]
-then
-	ln -s /mnt/usr/bin/$EDITOR /usr/local/bin/vi
-	ln -s /mnt/usr/bin/pacman /usr/local/bin/pm
-	ln -s /mnt/usr/bin/systemctl /usr/local/bin/sv
-
-	if [ $USE_DOAS = true ]
-	then
-		ln -s /mnt/usr/bin/doas /mnt/usr/local/bin/s
-	else
-		ln -s /mnt/usr/bin/sudo /mnt/usr/local/bin/s
-	fi
-fi
 
 arch-chroot /mnt sh -c "
+
+	if [ $SHELL = fish ]
+		then echo -e '\nset fish_greeting' > /etc/fish/config.fish
+	fi
+
+	if [ $ALIASES = true ]
+	then
+		ln -s /usr/bin/$EDITOR /usr/local/bin/vi
+		ln -s /usr/bin/pacman /usr/local/bin/pm
+		ln -s /usr/bin/systemctl /usr/local/bin/sv
+	
+		if [ $USE_DOAS = true ]
+		then
+			ln -s /usr/bin/doas /usr/local/bin/s
+		else
+			ln -s /usr/bin/sudo /usr/local/bin/s
+		fi
+	fi
+
 	if [ $USE_DOAS = true ]
 	then
 		pacman --noconfirm -Rndd sudo
