@@ -80,7 +80,7 @@ If you aren't sure on how to install one, here's how:
 
 KDE Plasma:
 ```
-sudo pacman -S plasma plasma-wayland-session sddm dolphin gwenview konsole
+sudo pacman -S plasma plasma-wayland-session dolphin gwenview konsole
 sudo sed -i 's/Current=/Current=breeze/g' /usr/lib/sddm/sddm.conf.d/default.conf
 sudo systemctl enable --now sddm
 ```
