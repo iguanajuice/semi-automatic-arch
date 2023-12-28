@@ -22,15 +22,15 @@ MBRDISK=             # Ignore if using UEFI
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed \
-	base base-devel $KERNEL $KERNEL-headers dkms linux-firmware $UCODE $EDITOR $SHELL    `# Core packages` \
-	grub efibootmgr os-prober                                                       `# Bootloader` \
-	arch-install-scripts git wget neofetch man-db usbutils dmidecode                `# Miscellaneous CLI tools` \
-	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                               `# Extra filesystem support` \
-	networkmanager net-tools wireless_tools iw                                      `# Networking` \
-	wireplumber pipewire-pulse pipewire-jack pipewire-alsa                          `# Audio` \
-	libva-$LIBVA-driver libva-utils gstreamer-vaapi                                 `# Hardware video codecs` \
-	gnu-free-fonts libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu `# Extra fonts` \
-	noto-fonts noto-fonts-cjk noto-fonts-emoji                                      `# Full unicode support`
+	base base-devel $KERNEL $KERNEL-headers dkms linux-firmware $UCODE $EDITOR $SHELL `# Core packages` \
+	grub efibootmgr os-prober                                                         `# Bootloader` \
+	arch-install-scripts git wget neofetch man-db usbutils dmidecode                  `# Miscellaneous CLI tools` \
+	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                                 `# Extra filesystem support` \
+	networkmanager net-tools wireless_tools iw                                        `# Networking` \
+	wireplumber pipewire-pulse pipewire-jack pipewire-alsa                            `# Audio` \
+	libva-$LIBVA-driver libva-utils gstreamer-vaapi                                   `# Hardware video codecs` \
+	gnu-free-fonts libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu   `# Extra fonts` \
+	noto-fonts noto-fonts-cjk noto-fonts-emoji                                        `# Full unicode support`
 
 genfstab -U /mnt > /mnt/etc/fstab
 sed -i 's/subvolid=//g' /mnt/etc/fstab # Timeshift doesn't play nice with subvolid
@@ -82,7 +82,7 @@ arch-chroot /mnt sh -c "
 	echo LANG=\$(cat /tmp/locale) > /etc/locale.conf
 	ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
 
-	grub-install $MBRDISK
+	grub-install $MBRDISK || return
 	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/default/grub
 	sed -i 's/ quiet//g' /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
@@ -109,8 +109,7 @@ arch-chroot /mnt sh -c "
 	sed -i 's/#DefaultTimeoutStartSec=90s/DefaultTimeoutStartSec=10s/g' /etc/systemd/system.conf
 	sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/g' /etc/systemd/system.conf
 	sed -i 's/#DefaultDeviceTimeoutSec=90s/DefaultDeviceTimeoutSec=10s/g' /etc/systemd/system.conf
-
+ 
+ 	echo -e '\n~ All done, run command `reboot` to restart your system'
 	exit
 "
-
-echo -e '\n~ All done, run command reboot to restart your system'
