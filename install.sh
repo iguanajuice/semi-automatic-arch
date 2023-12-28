@@ -110,6 +110,5 @@ arch-chroot /mnt sh -c "
 	sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=10s/g' /etc/systemd/system.conf
 	sed -i 's/#DefaultDeviceTimeoutSec=90s/DefaultDeviceTimeoutSec=10s/g' /etc/systemd/system.conf
  
- 	echo -e '\n~ All done, run command `reboot` to restart your system'
 	exit
 "
