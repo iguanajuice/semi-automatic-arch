@@ -16,9 +16,9 @@ KERNEL=linux         # Which Linux kernel to use: linux, linux-lts, linux-zen, l
 UCODE=               # Set to either amd-ucode or intel-ucode or leave blank if using neither
 LIBVA=mesa           # Driver for hardware video codecs: Radeon=mesa, Intel=intel, Nvidia=vdpau
 TZ=America/New_York  # Your timezone (Region/City). Your timezone can be found in /usr/share/zoneinfo
-ALIASES=false        # Generate aliases for sudo, pacman, systemctl, and $EDITOR in /usr/local/bin
+ALIASES=false        # Add global aliases for sudo, pacman, systemctl, and $EDITOR
 USE_DOAS=true        # Replaces `sudo` with `doas`
-MBRDEVICE=             # Ignore if using UEFI
+MBRDEVICE=           # Ignore if using UEFI
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed \
@@ -41,16 +41,16 @@ fi
 
 if [ $ALIASES = true ]
 then
+	ln -s /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
+	ln -s /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
+	ln -s /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
+
 	if [ $USE_DOAS = true ]
 	then
 		ln -s /mnt/usr/bin/doas /mnt/usr/local/bin/s
 	else
 		ln -s /mnt/usr/bin/sudo /mnt/usr/local/bin/s
 	fi
-
-	ln -s /mnt/usr/bin/$EDITOR /mnt/usr/local/bin/vi
-	ln -s /mnt/usr/bin/pacman /mnt/usr/local/bin/pm
-	ln -s /mnt/usr/bin/systemctl /mnt/usr/local/bin/sv
 fi
 
 arch-chroot /mnt sh -c "
