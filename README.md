@@ -66,7 +66,9 @@ git clone https://github.com/iguanajuice/semi-automatic-arch
 cd semi-automatic-arch
 nano install.sh
 ```
-Once finsihed with configuration, press `Ctrl+s` and `Ctrl+x` to save and quit, then run `sh install.sh start` to begin installation.
+When finsihed with configuration, press `Ctrl+s` to save and `Ctrl+x` to quit, then run `sh install.sh start` to begin installation.
+
+Once the install script is done, run command `reboot` if no errors are shown.
 
 # Where is my user interface?
 
