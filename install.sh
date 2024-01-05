@@ -35,10 +35,7 @@ pacstrap -K /mnt --needed \
 genfstab -U /mnt > /mnt/etc/fstab
 sed -i 's/subvolid=//g' /mnt/etc/fstab # Timeshift doesn't play nice with subvolid
 
-
-
 arch-chroot /mnt sh -c "
-
 	if [ $SHELL = fish ]
 		then echo -e '\nset fish_greeting' > /etc/fish/config.fish
 	fi
@@ -89,9 +86,6 @@ arch-chroot /mnt sh -c "
 	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/default/grub
 	sed -i 's/ quiet//g' /etc/default/grub
 	grub-mkconfig -o /boot/grub/grub.cfg
-
-	pacman-key --init
-	pacman-key --populate
 
 	pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
 	pacman-key --lsign-key 3056513887B78AEB
