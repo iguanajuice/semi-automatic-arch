@@ -36,6 +36,11 @@ genfstab -U /mnt > /mnt/etc/fstab
 sed -i 's/subvolid=//g' /mnt/etc/fstab # Timeshift doesn't play nice with subvolid
 
 arch-chroot /mnt sh -c "
+	grub-install $MBRDEVICE || return
+	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/default/grub
+	sed -i 's/ quiet//g' /etc/default/grub
+	grub-mkconfig -o /boot/grub/grub.cfg
+ 
 	if [ $SHELL = fish ]
 		then echo -e '\nset fish_greeting' > /etc/fish/config.fish
 	fi
@@ -81,11 +86,6 @@ arch-chroot /mnt sh -c "
 	locale-gen | awk 'NR==2 {print substr(\$1,1,length(\$1)-3)}' > /tmp/locale
 	echo LANG=\$(cat /tmp/locale) > /etc/locale.conf
 	ln -sf /usr/share/zoneinfo/$TZ /etc/localtime
-
-	grub-install $MBRDEVICE || return
-	sed -i 's/GRUB_TIMEOUT=5/GRUB_TIMEOUT=1/g' /etc/default/grub
-	sed -i 's/ quiet//g' /etc/default/grub
-	grub-mkconfig -o /boot/grub/grub.cfg
 
 	pacman-key --recv-key 3056513887B78AEB --keyserver keyserver.ubuntu.com
 	pacman-key --lsign-key 3056513887B78AEB
