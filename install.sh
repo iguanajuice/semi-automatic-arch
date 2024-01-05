@@ -96,7 +96,7 @@ arch-chroot /mnt sh -c "
 	sed -i 's/#Color/Color/g' /etc/pacman.conf
 	sed -i 's/#IgnorePkg/IgnorePkg/g' /etc/pacman.conf
 	sed -i 's/#IgnoreGroup/IgnoreGroup/g' /etc/pacman.conf
-	sed -i '90,91 s/#//' /etc/pacman.conf # You can't really tell, but this enables multilib
+	sed -i '90,91 s/#//' /etc/pacman.conf # This enables the 32-bit repo
 	pacman --noconfirm -Syu > /dev/null
 
 	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf # Enable REISUB keys
