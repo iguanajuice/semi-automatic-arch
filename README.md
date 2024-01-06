@@ -143,7 +143,7 @@ Edit `grub-btrfsd.service`:
 EDITOR=your_editor_of_choice su
 systemctl edit --full grub-btrfsd
 ```
-Change `--syslog /.snapshots` to `-t`
+Replace `--syslog /.snapshots` with `-t`
 
 Save and quit.
 
