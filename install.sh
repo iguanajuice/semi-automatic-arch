@@ -7,18 +7,19 @@ then
 	exit
 fi
 
-USER=user            # Username of auto-generated user (set as blank if you wish to not create one)
-FULLNAME='Arch User' # Full name of auto-generated user (use quotes)
-HOSTNAME=archlinux   # The system's hostname
-EDITOR=micro         # Choice for terminal-based text editor
-SHELL=fish           # Set default interactive shell, does NOT change system shell
-KERNEL=linux         # Which Linux kernel to use: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
-UCODE=               # Set to either amd-ucode or intel-ucode or leave blank if using neither
-LIBVA=mesa           # Driver for hardware video codecs: Radeon=mesa, Intel=intel, Nvidia=vdpau
-TZ=America/New_York  # Your timezone (Region/City). Your timezone can be found using `ls /usr/share/zoneinfo`
-ALIASES=false        # Add global aliases for sudo, pacman, systemctl, and $EDITOR
-USE_DOAS=true        # Use `doas` instead of `sudo`
-MBRDEVICE=           # Ignore this if using UEFI
+USER=user              # Username of auto-generated user (set as blank if you wish to not create one)
+FULLNAME='Arch User'   # Full name of auto-generated user (use quotes)
+HOSTNAME=archlinux     # The system's hostname
+EDITOR=micro           # Choice for terminal-based text editor
+SHELL=fish             # Set default interactive shell, does NOT change system shell
+KERNEL=linux           # Which Linux kernel to use: linux, linux-lts, linux-zen, linux-rt, linux-rt-lts
+UCODE=                 # Set to either amd-ucode or intel-ucode or leave blank if using neither
+HVA=libva-mesa-drivers # Hardware video acceleration: Radeon=libva-mesa-drivers, Nvidia=libva-nvidia-drivers,
+                       # Intel (pre-2014)=libva-intel-drivers, Intel (2014+)=intel-media-driver
+TZ=America/New_York    # Your timezone (Region/City). Your timezone can be found using `ls /usr/share/zoneinfo`
+ALIASES=false          # Add global aliases for sudo, pacman, systemctl, and $EDITOR
+USE_DOAS=true          # Use `doas` instead of `sudo`
+MBRDEVICE=             # Ignore this if using UEFI
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed \
