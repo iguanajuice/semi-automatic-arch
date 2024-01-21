@@ -25,9 +25,9 @@ sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrr
 pacstrap -K /mnt --needed \
 	base base-devel $KERNEL $KERNEL-headers dkms linux-firmware $UCODE $EDITOR $SHELL `# Core packages` \
 	grub efibootmgr os-prober                                                         `# Bootloader` \
-	arch-install-scripts git wget neofetch man-db usbutils lshw dmidecode             `# Miscellaneous CLI tools` \
-	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                                 `# Extra filesystem support` \
-	networkmanager net-tools wireless_tools iw                                        `# Networking` \
+	arch-install-scripts neofetch git wget man-db usbutils lshw dmidecode             `# CLI tools` \
+	btrfs-progs lvm2 ntfs-3g gvfs-mtp                                                 `# Expanded filesystem support` \
+	networkmanager iptables-nft net-tools wireless_tools iw                           `# Networking` \
 	wireplumber pipewire-pulse pipewire-jack pipewire-alsa                            `# Audio` \
 	libva-$LIBVA-driver libva-utils gstreamer-vaapi                                   `# Hardware video codecs` \
 	gnu-free-fonts libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu   `# Extra fonts` \
