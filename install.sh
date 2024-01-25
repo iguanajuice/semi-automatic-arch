@@ -107,6 +107,10 @@ arch-chroot /mnt sh -c "
 	sed -i 's/#DefaultTimeoutStartSec=90s/DefaultTimeoutStartSec=15s/g' /etc/systemd/system.conf
 	sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=15s/g' /etc/systemd/system.conf
 	sed -i 's/#DefaultDeviceTimeoutSec=90s/DefaultDeviceTimeoutSec=15s/g' /etc/systemd/system.conf
+
+ 	# Fix OpenAL audio
+  	mkdir /home/$USER/.config 2> /dev/null
+  	echo drivers=pulse > /home/$USER/.config/alsoft.conf 
  
 	exit
 "
