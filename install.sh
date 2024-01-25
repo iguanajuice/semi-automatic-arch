@@ -26,7 +26,7 @@ pacstrap -K /mnt --needed \
 	base base-devel $KERNEL $KERNEL-headers dkms linux-firmware $UCODE $EDITOR $SHELL `# Core packages` \
 	grub efibootmgr os-prober                                                         `# Bootloader` \
 	arch-install-scripts neofetch git wget man-db usbutils lshw dmidecode             `# CLI tools` \
-	btrfs-progs lvm2 gvfs-mtp                                                         `# Expanded filesystem support` \
+	btrfs-progs lvm2 gvfs-mtp ntfs-3g                                                 `# Expanded filesystem support` \
 	networkmanager iptables-nft net-tools wireless_tools iw                           `# Networking` \
 	wireplumber pipewire-pulse pipewire-jack pipewire-alsa                            `# Audio` \
 	libva-$LIBVA-driver libva-utils gstreamer-vaapi                                   `# Hardware video codecs` \
