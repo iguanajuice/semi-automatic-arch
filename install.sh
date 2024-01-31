@@ -110,7 +110,8 @@ arch-chroot /mnt sh -c "
 
  	# Fix OpenAL audio
   	mkdir /home/$USER/.config 2> /dev/null
-  	echo drivers=pulse > /home/$USER/.config/alsoft.conf 
+  	echo drivers=pulse > /home/$USER/.config/alsoft.conf
+   	chown -R $USER:$USER /home/$USER/.config
  
 	exit
 "
