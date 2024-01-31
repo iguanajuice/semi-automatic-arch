@@ -29,7 +29,7 @@ pacstrap -K /mnt --needed \
 	btrfs-progs lvm2 gvfs-mtp ntfs-3g                                                 `# Expanded filesystem support` \
 	networkmanager iptables-nft net-tools wireless_tools iw                           `# Networking` \
 	wireplumber pipewire-pulse pipewire-jack pipewire-alsa                            `# Audio` \
-	libva-$LIBVA-driver libva-utils gstreamer-vaapi                                   `# Hardware video codecs` \
+	$HVA libva-utils gstreamer-vaapi                                                  `# Hardware video acceleration` \
 	gnu-free-fonts libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu   `# Extra fonts` \
 	noto-fonts noto-fonts-cjk noto-fonts-emoji                                        `# Full unicode support`
 
