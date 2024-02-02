@@ -23,15 +23,15 @@ MBRDEVICE=             # Ignore this if using UEFI
 
 sed -i 's/#Parallel/Parallel/g' /etc/pacman.conf # haha package download go brrrrr
 pacstrap -K /mnt --needed \
-	base base-devel $KERNEL $KERNEL-headers dkms linux-firmware $UCODE $EDITOR $SHELL `# Core packages` \
-	grub efibootmgr os-prober                                                         `# Bootloader` \
-	arch-install-scripts neofetch git wget man-db usbutils lshw dmidecode             `# CLI tools` \
-	btrfs-progs lvm2 gvfs-mtp ntfs-3g                                                 `# Expanded filesystem support` \
-	networkmanager iptables-nft net-tools wireless_tools iw                           `# Networking` \
-	wireplumber pipewire-pulse pipewire-jack pipewire-alsa                            `# Audio` \
-	$HVA libva-utils gstreamer-vaapi                                                  `# Hardware video acceleration` \
-	gnu-free-fonts libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu   `# Extra fonts` \
-	noto-fonts noto-fonts-cjk noto-fonts-emoji                                        `# Full unicode support`
+	base base-devel $KERNEL $KERNEL-headers linux-firmware dkms $UCODE $EDITOR $SHELL dash `# Core packages` \
+	grub efibootmgr os-prober                                                              `# Bootloader` \
+	arch-install-scripts neofetch git wget man-db usbutils lshw dmidecode                  `# CLI tools` \
+	btrfs-progs lvm2 gvfs-mtp ntfs-3g                                                      `# Expanded filesystem support` \
+	networkmanager iptables-nft net-tools wireless_tools iw                                `# Networking` \
+	wireplumber pipewire-pulse pipewire-jack pipewire-alsa                                 `# Audio` \
+	$HVA libva-utils gstreamer-vaapi                                                       `# Hardware video acceleration` \
+	gnu-free-fonts libertinus-font ttf-liberation ttf-ubuntu-font-family ttf-dejavu        `# Extra fonts` \
+	noto-fonts noto-fonts-cjk noto-fonts-emoji                                             `# Full unicode support`
 
 genfstab -U /mnt > /mnt/etc/fstab
 sed -i 's/subvolid=//g' /mnt/etc/fstab # Timeshift doesn't play nice with subvolid
@@ -101,12 +101,16 @@ arch-chroot /mnt sh -c "
 	pacman --noconfirm -Syu > /dev/null
 
 	echo kernel.sysrq=1 > /etc/sysctl.d/kernel.conf # Enable REISUB keys
+ 
 	systemctl enable NetworkManager
 
-	# If something goes wrong, you won't have to wait 90 seconds to find out
+	# If something goes wrong, you won't have to wait 90 seconds
 	sed -i 's/#DefaultTimeoutStartSec=90s/DefaultTimeoutStartSec=15s/g' /etc/systemd/system.conf
 	sed -i 's/#DefaultTimeoutStopSec=90s/DefaultTimeoutStopSec=15s/g' /etc/systemd/system.conf
 	sed -i 's/#DefaultDeviceTimeoutSec=90s/DefaultDeviceTimeoutSec=15s/g' /etc/systemd/system.conf
+
+	# Use `dash` for POSIX shell
+ 	ln -sf /usr/bin/dash /usr/bin/sh
 
  	# Fix OpenAL audio
   	mkdir /home/$USER/.config
