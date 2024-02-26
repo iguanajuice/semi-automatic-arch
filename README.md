@@ -41,9 +41,9 @@ umount /mnt
 Mount partitions and subvolumes:
 ```
 mount -o compress=zstd,subvol=@ /dev/sda2 /mnt
-mount -o compress=zstd,subvol=@home /dev/sda2 /mnt/home --mkdir
-mount -o compress=zstd,subvol=swap /dev/sda2 /mnt/swap --mkdir
-mount /dev/sda1 /mnt/boot/efi --mkdir
+mount -o compress=zstd,subvol=@home /dev/sda2 /mnt/home -m
+mount -o compress=zstd,subvol=swap /dev/sda2 /mnt/swap -m
+mount /dev/sda1 /mnt/boot/efi -m
 ```
 
 *If mounting subvolumes from a hard drive, add `autodefrag,` before `subvol=`*
